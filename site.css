@@ -58,7 +58,8 @@ button { color: inherit; font: inherit; }
 .about-preview__grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; }
 .about-feature { position: relative; display: flex; min-height: 430px; overflow: hidden; align-items: end; padding: 36px; border: 1px solid rgba(255,255,255,.18); border-radius: 7px; isolation: isolate; }
 .about-feature > img, .about-feature__shade { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; }
-.about-feature > img { object-fit: cover; object-position: center 57%; }
+.about-feature > img { object-fit: cover; object-position: center 57%; opacity: 0; transition: opacity .8s ease; }
+.about-feature > img.is-active { opacity: 1; }
 .about-feature__shade { background: linear-gradient(180deg, rgba(8,12,14,.02) 20%, rgba(8,12,14,.86) 100%); }
 .about-feature__copy { max-width: 490px; text-shadow: 0 2px 12px rgba(0,0,0,.9); }
 .about-feature__copy .eyebrow { color: #fff; }

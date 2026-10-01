@@ -162,6 +162,20 @@ if (contactSlides.length > 1) {
   }, 5000);
 }
 
+const storySlides = [...document.querySelectorAll('[data-story-slide]')];
+
+if (storySlides.length > 1) {
+  let activeStorySlide = 0;
+
+  window.setInterval(() => {
+    storySlides[activeStorySlide].classList.remove('is-active');
+    storySlides[activeStorySlide].setAttribute('aria-hidden', 'true');
+    activeStorySlide = (activeStorySlide + 1) % storySlides.length;
+    storySlides[activeStorySlide].classList.add('is-active');
+    storySlides[activeStorySlide].removeAttribute('aria-hidden');
+  }, 4000);
+}
+
 document.querySelectorAll('.service-gallery').forEach((gallery) => {
   const galleryButtons = [...gallery.querySelectorAll('[data-gallery-open]')];
   const galleryDialog = gallery.querySelector('.service-gallery__dialog');
