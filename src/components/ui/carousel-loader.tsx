@@ -24,7 +24,7 @@ const StyledWrapper = styled.div`
     width: 140px;
     height: 90px;
     border-radius: 50%;
-    background: rgba(244, 241, 235, .08);
+    background: rgba(158, 31, 36, .22);
     filter: blur(28px);
     animation: logo-glow 1.8s ease-in-out infinite;
   }
@@ -35,7 +35,7 @@ const StyledWrapper = styled.div`
     width: 150px;
     height: 100px;
     object-fit: contain;
-    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(244, 241, 235, .5));
+    filter: brightness(0) saturate(100%) invert(11%) sepia(87%) saturate(4582%) hue-rotate(341deg) brightness(94%) contrast(104%) drop-shadow(0 0 8px rgba(158, 31, 36, .6));
     animation: logo-breathe 1.8s ease-in-out infinite;
   }
 
@@ -45,8 +45,8 @@ const StyledWrapper = styled.div`
   }
 
   @keyframes logo-breathe {
-    0%, 100% { filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(244, 241, 235, .35)); }
-    50% { filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(244, 241, 235, .9)); }
+    0%, 100% { filter: brightness(0) saturate(100%) invert(11%) sepia(87%) saturate(4582%) hue-rotate(341deg) brightness(94%) contrast(104%) drop-shadow(0 0 6px rgba(158, 31, 36, .45)); }
+    50% { filter: brightness(0) saturate(100%) invert(11%) sepia(87%) saturate(4582%) hue-rotate(341deg) brightness(108%) contrast(110%) drop-shadow(0 0 18px rgba(158, 31, 36, .78)); }
   }
 
   @media (prefers-reduced-motion: reduce) {

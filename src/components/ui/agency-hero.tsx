@@ -1,8 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import macPortrait from '../../../assets/mac-portrait.png';
-import franzPortrait from '../../../assets/franz-portrait.png';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ui/theme-toggle';
 
 const entrance: Variants = {
   hidden: { opacity: 0, y: 22 },
@@ -42,11 +41,12 @@ export default function AgencyHeroSection() {
       <motion.main id="main" className="home-hero__content" variants={sequenceVariants}>
         <motion.p className="home-hero__eyebrow" variants={itemVariants}>
           <span aria-hidden="true" />
-          Customs brokerage / Philippines
+          <span className="home-hero__eyebrow-copy">Customs brokerage / Philippines</span>
+          <ThemeToggle />
         </motion.p>
         <motion.h1 id="hero-title" className="home-hero__title" variants={itemVariants}>
-          <span>Customs, handled</span>
-          <em>with confidence.</em>
+          <span>Efficiency meets</span>
+          <em>reliability.</em>
         </motion.h1>
         <motion.p className="home-hero__copy" variants={itemVariants}>
           Expert customs brokerage and logistics, built around your cargo, your timeline, and your business.
@@ -64,16 +64,6 @@ export default function AgencyHeroSection() {
               <ArrowUpRight aria-hidden="true" size={17} strokeWidth={1.8} />
             </a>
           </Button>
-        </motion.div>
-        <motion.div className="home-hero__trust" variants={itemVariants}>
-          <div className="home-hero__portraits" aria-hidden="true">
-            <img src={macPortrait} alt="" />
-            <img src={franzPortrait} alt="" />
-          </div>
-          <div className="home-hero__trust-copy">
-            <strong>Two brokers. One shared ambition.</strong>
-            <span>Personal guidance for every shipment.</span>
-          </div>
         </motion.div>
       </motion.main>
     </motion.section>
