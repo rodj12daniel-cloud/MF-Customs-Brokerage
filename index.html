@@ -8,10 +8,11 @@
   <title>MF Customs Brokerage | Trade, made clearer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   <script>document.documentElement.classList.add('js');</script>
+  <script>if (!location.hash || location.hash === '#home') { history.scrollRestoration = 'manual'; window.addEventListener('pageshow', () => { if (!location.hash || location.hash === '#home') window.scrollTo(0, 0); }, { once: true }); }</script>
   <style>
     :root {
       color-scheme: dark;
@@ -22,8 +23,8 @@
       --panel: #101819;
       --line: rgba(238, 234, 223, .14);
       --accent: #fff;
-      --serif: "Inter", "Segoe UI", sans-serif;
-      --sans: "Inter", "Segoe UI", sans-serif;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", "Segoe UI", sans-serif;
       --content: 1180px;
     }
 
@@ -183,42 +184,48 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=20">
+  <link rel="stylesheet" href="site.css?v=29">
   <link rel="stylesheet" href="chatbot.css">
+  <script>try { if (sessionStorage.getItem('mf-page-transition') === 'active') document.documentElement.classList.add('page-transition-pending'); } catch {}</script>
 </head>
 <body class="home">
+  <div id="page-transition-root" class="page-transition-root" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <a class="brand" href="index.html" aria-label="MF Customs Brokerage home">
+  <a class="brand" href="#home" aria-label="MF Customs Brokerage home">
     <img class="brand__logo" src="assets/mflogo-display.png" alt="">
     <span class="brand__name"><span>MF CUSTOMS</span><span>BROKERAGE</span></span>
   </a>
   <header class="header">
     <div class="nav-dock" id="primary-navigation">
       <nav class="nav" aria-label="Main navigation">
-        <a href="index.html" aria-current="page">Home</a>
+        <a href="#home" aria-current="page">Home</a>
         <a href="#about">About</a>
         <a href="services.html">Services</a>
         <a href="team.html">Our Team</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="header__action">
-        <a class="button button--light" href="contact.html">Request a Quote</a>
-      </div>
+    </div>
+    <div class="header__action">
+      <a class="button button--light" href="contact.html">Request a Quote</a>
     </div>
     <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false"><span aria-hidden="true"></span></button>
   </header>
-  <section class="hero" id="home" aria-labelledby="hero-title">
-    <img class="hero__image" src="assets/hero.jpg" alt="" fetchpriority="high">
-    <div class="hero__shade" aria-hidden="true"></div>
-    <main class="hero__content" id="main">
-      <h1 id="hero-title"><span>Customs. Logistics.</span><span>Simplified.</span></h1>
-      <p class="hero__copy"><span class="hero__copy--desktop">Professional customs brokerage and logistics solutions designed to make import and export processes more efficient.</span><span class="hero__copy--mobile">Customs brokerage and logistics that make import and export easier.</span></p>
-      <div class="hero__actions">
-        <a class="button button--light" href="contact.html">Request a Quote</a>
-        <a class="button button--outline" href="services.html">Explore Our Services</a>
+  <div class="home-showcase">
+    <div id="home-hero-root"></div>
+
+    <section class="customs-carousel" aria-label="Customs brokerage and freight photography">
+      <div class="customs-carousel__stage is-loading" data-customs-carousel>
+        <div class="customs-carousel__fallback" aria-hidden="true">
+          <img src="assets/hero.jpg" alt="">
+          <img src="assets/industrial-port-container-yard.jpg" alt="">
+          <img src="assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg" alt="">
+          <img src="assets/4180878.png" alt="">
+          <img src="assets/industrial-port-container-yard.jpg" alt="">
+        </div>
+        <canvas class="customs-carousel__canvas" role="img" aria-label="Slowly rotating curved photos of customs, cargo ports, freight, and shipping"></canvas>
       </div>
-    </main>
-  </section>
+    </section>
+  </div>
 
   <section class="about-preview" id="about" aria-labelledby="about-preview-title">
     <div class="about-preview__inner">
@@ -231,7 +238,7 @@
           <img class="is-active" data-story-slide src="https://wallpaperaccess.com/full/4180942.jpg" alt="Cargo truck traveling on a coastal road" loading="eager">
           <img data-story-slide src="https://media.istockphoto.com/id/2157040201/photo/truck-carrying-forty-foot-container-leaving-port-terminal-with-ship-and-quay-crane-on-the.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=D4UJJ09jrr-lkrP_6FvIAj6-2PosXIzg-iQ_HcxD0iQ=" alt="Truck carrying a shipping container out of a port terminal" aria-hidden="true" loading="eager">
           <img data-story-slide src="https://media.istockphoto.com/id/868192214/photo/large-container-ship-at-sea-top-down-aerial-image.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=cNvYsT8ZSuUtpkhqUthDy0oma_6s7vmEJQqyuNSH_xs=" alt="Container ship at sea viewed from above" aria-hidden="true" loading="eager">
-          <img data-story-slide src="https://ca-times.brightspotcdn.com/dims4/default/7973e5d/2147483647/strip/true/crop/4399x2743+0+0/resize/1200x748!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fb8%2F04%2F731c574650e3869571d8e9766840%2F843ce6abc15844b682df938a5e5e0485" alt="Cargo ship at a port terminal" aria-hidden="true" loading="eager">
+          <img data-story-slide src="assets/4180878.png" alt="Cargo aircraft above a container ship and freight truck" aria-hidden="true" loading="eager">
           <div class="about-feature__shade" aria-hidden="true"></div>
           <div class="about-feature__copy">
             <p class="eyebrow">Our Story</p>
@@ -334,7 +341,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
-      <a class="footer__logo" href="index.html" aria-label="MF Customs Brokerage home"><img src="assets/mflogo-display.png" alt="MF Customs Brokerage"></a>
+      <a class="footer__logo" href="#home" aria-label="MF Customs Brokerage home"><img src="assets/mflogo-display.png" alt="MF Customs Brokerage"></a>
       <div class="footer__contact">
         <h2>Contact Us</h2>
         <div class="footer__contact-groups">
@@ -347,14 +354,17 @@
   </footer>
 
   <nav class="mobile-dock" aria-label="Mobile navigation">
-    <a href="index.html" aria-current="page"><img class="mobile-dock__icon" src="assets/hugeicons/home-01.svg" alt=""><span>Home</span></a>
+    <a href="#home" aria-current="page"><img class="mobile-dock__icon" src="assets/hugeicons/home-01.svg" alt=""><span>Home</span></a>
     <a href="#about"><img class="mobile-dock__icon" src="assets/hugeicons/information-circle.svg" alt=""><span>About</span></a>
     <a href="services.html"><img class="mobile-dock__icon" src="assets/hugeicons/globe-02.svg" alt=""><span>Services</span></a>
     <a href="team.html"><img class="mobile-dock__icon" src="assets/hugeicons/user-group.svg" alt=""><span>Our Team</span></a>
     <a href="contact.html"><img class="mobile-dock__icon" src="assets/hugeicons/mail-01.svg" alt=""><span>Contact</span></a>
   </nav>
 
-  <script src="chatbot.js" defer></script>
-  <script src="site.js" defer></script>
+  <script type="module" src="/chatbot.js"></script>
+  <script type="module" src="/site.js"></script>
+  <script type="module" src="customs-carousel.js"></script>
+  <script type="module" src="/src/main.tsx"></script>
+  <script type="module" src="/src/page-transition.tsx"></script>
 </body>
 </html>
