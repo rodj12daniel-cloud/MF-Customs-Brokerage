@@ -801,14 +801,14 @@ html[data-theme="light"] .page-banner {
   background: linear-gradient(115deg, rgba(250,248,247,.96), rgba(246,243,241,.92) 60%, rgba(251,249,247,.9));
 }
 
-html[data-theme="light"] .page-banner--services::before,
-html[data-theme="light"] .page-banner--team::before {
-  filter: saturate(.55);
-  background-image: linear-gradient(90deg, rgba(250,248,247,.84), rgba(250,248,247,.68) 58%, rgba(250,248,247,.4)), linear-gradient(0deg, rgba(250,248,247,.66), rgba(250,248,247,.1) 68%), url("assets/industrial-port-container-yard.jpg");
+html[data-theme="light"] .page-banner--services::before {
+  filter: saturate(.65) brightness(.8);
+  background-image: linear-gradient(90deg, rgba(10,12,13,.72), rgba(10,12,13,.48) 58%, rgba(10,12,13,.22)), linear-gradient(0deg, rgba(10,12,13,.34), rgba(10,12,13,.08) 68%), url("assets/industrial-port-container-yard.jpg");
 }
 
 html[data-theme="light"] .page-banner--team::before {
-  background-image: linear-gradient(90deg, rgba(250,248,247,.84), rgba(250,248,247,.68) 58%, rgba(250,248,247,.4)), linear-gradient(0deg, rgba(250,248,247,.66), rgba(250,248,247,.1) 68%), url("assets/4180878.png");
+  filter: saturate(.75) brightness(.94);
+  background-image: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,.12) 58%, rgba(255,255,255,.08)), linear-gradient(0deg, rgba(255,255,255,.28), rgba(255,255,255,.08) 68%), url("assets/4180878.png");
 }
 
 html[data-theme="light"] .page-banner--team .page-banner__inner > *,
