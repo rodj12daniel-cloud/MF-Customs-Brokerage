@@ -21,7 +21,7 @@ if (stage && canvas) {
   ];
   const loader = new THREE.TextureLoader().setCrossOrigin('anonymous');
   const scene = new THREE.Scene();
-  const panelAspect = 3 / 5;
+  const panelAspect = 4 / 3;
 
   let renderer;
   try {
@@ -85,7 +85,7 @@ if (stage && canvas) {
       const textures = Array(photoSources.length).fill(firstTexture);
 
       const carousel = new THREE.Group();
-      const panelCount = 16;
+      const panelCount = photoSources.length;
       const panelStep = (Math.PI * 2) / panelCount;
       const radius = 8.4;
       const panelAngle = panelStep * 0.93;
@@ -135,7 +135,6 @@ if (stage && canvas) {
             const material = panels[panelIndex].material;
             if (!(material instanceof THREE.MeshBasicMaterial)) continue;
             material.map = texture;
-            material.needsUpdate = true;
           }
 
           renderer.render(scene, camera);
@@ -153,7 +152,7 @@ if (stage && canvas) {
         animationFrame = 0;
         if (!isVisible) return;
         const delta = Math.min(clock.getDelta(), 0.05);
-        if (!isDragging && !reducedMotion.matches) carousel.rotation.y += delta * 0.04;
+        if (!isDragging && !reducedMotion.matches) carousel.rotation.y += delta * 0.12;
         if (Math.abs(carousel.rotation.y) > Math.PI * 2) carousel.rotation.y %= Math.PI * 2;
         renderer.render(scene, camera);
         animationFrame = window.requestAnimationFrame(animate);
