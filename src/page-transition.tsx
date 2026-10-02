@@ -19,6 +19,8 @@ if (transitionRoot) {
   } catch {
     document.documentElement.classList.remove('page-transition-pending');
   }
+  const isInitialNavigation = performance.getEntriesByType('navigation')
+    .some((entry) => entry instanceof PerformanceNavigationTiming && entry.type === 'navigate');
 
   let loaderRoot: ReturnType<typeof createRoot> | null = null;
 
@@ -37,7 +39,7 @@ if (transitionRoot) {
     document.documentElement.classList.remove('page-transition-pending');
   };
 
-  if (isTransitioning) {
+  if (isTransitioning || isInitialNavigation) {
     const startedAt = performance.now();
     showTransition();
 

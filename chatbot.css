@@ -4,7 +4,7 @@
 }
 
 .mfc-chatbot {
-  --chat-bg: linear-gradient(145deg, rgba(35, 48, 42, .84), rgba(12, 18, 17, .92) 68%, rgba(8, 12, 13, .95));
+  --chat-bg: linear-gradient(145deg, rgba(35, 35, 38, .96), rgba(14, 14, 16, .98) 68%, rgba(8, 8, 10, .99));
   --chat-border: rgba(244, 241, 235, .28);
   --chat-ink: #f4f1eb;
   --chat-muted: #b1b4b1;
@@ -26,7 +26,7 @@
   border: 1px solid rgba(255, 255, 255, .78);
   border-radius: 50%;
   background: #f4f1eb;
-  color: #111819;
+  color: #121315;
   box-shadow: 0 8px 26px rgba(0, 0, 0, .3);
   cursor: pointer;
   transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
@@ -184,7 +184,7 @@
   border-color: transparent;
   border-radius: 10px 10px 3px 10px;
   background: #f4f1eb;
-  color: #111819;
+  color: #121315;
 }
 
 .mfc-chatbot__message a {
@@ -284,7 +284,7 @@
   border: 1px solid rgba(255, 255, 255, .8);
   border-radius: 7px;
   background: #f4f1eb;
-  color: #111819;
+  color: #121315;
   cursor: pointer;
   transition: background-color .2s ease, transform .2s ease;
 }

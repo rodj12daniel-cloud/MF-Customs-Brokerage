@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0a1011">
+  <meta name="theme-color" content="#0b0b0d">
   <meta name="description" content="MF Customs Brokerage provides customs clearance, freight forwarding, customs and tariff consultancy, and related services.">
   <title>MF Customs Brokerage | Trade, made clearer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,8 +19,8 @@
       --ink: #f4f1eb;
       --muted: #b1b4b1;
       --dim: #858d89;
-      --night: #0a1011;
-      --panel: #101819;
+      --night: #0b0b0d;
+      --panel: #121315;
       --line: rgba(238, 234, 223, .14);
       --accent: #fff;
       --serif: "Cormorant Garamond", Georgia, serif;
@@ -38,11 +38,11 @@
     .skip-link { position: fixed; z-index: 10; top: 12px; left: 12px; padding: 12px 16px; background: var(--ink); color: var(--night); transform: translateY(-160%); }
     .skip-link:focus { transform: translateY(0); }
 
-    .hero { position: relative; display: grid; min-height: 100vh; min-height: 100svh; overflow: clip; isolation: isolate; background: #101617; }
+    .hero { position: relative; display: grid; min-height: 100vh; min-height: 100svh; overflow: clip; isolation: isolate; background: #111214; }
     .hero__image, .hero__shade { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; }
     .hero__image { object-fit: cover; object-position: center 52%; animation: image-drift 32s ease-in-out infinite alternate; will-change: transform; }
     .hero__shade { background: linear-gradient(180deg, rgba(5, 9, 11, .12) 0%, rgba(7, 11, 13, .20) 44%, rgba(7, 11, 13, .43) 100%), linear-gradient(90deg, rgba(5, 9, 11, .16), transparent 65%); }
-    .hero::after { position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 51% 43%, rgba(15, 18, 17, .2), transparent 50%); content: ""; pointer-events: none; }
+    .hero::after { position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 51% 43%, rgba(15, 15, 16, .2), transparent 50%); content: ""; pointer-events: none; }
     @keyframes image-drift { from { transform: scale(1.006) translate3d(0, 0, 0); } to { transform: scale(1.025) translate3d(-.35%, -.25%, 0); } }
 
     .header { position: absolute; z-index: 3; top: 25px; left: 50%; display: grid; width: min(var(--content), calc(100% - 64px)); min-height: 74px; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 9px 11px 9px 20px; border: 1px solid rgba(255, 255, 255, .17); border-radius: 999px; background: rgba(10, 15, 16, .53); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); transform: translateX(-50%); }
@@ -54,10 +54,10 @@
     .nav a { color: rgba(244, 241, 235, .81); font-size: 12px; transition: color .2s ease; }
     .nav a:hover, .nav a:focus-visible { color: #fff; }
     .header__action { justify-self: end; }
-    .button { display: inline-flex; min-height: 47px; align-items: center; justify-content: center; gap: 17px; padding: 0 20px; border: 1px solid transparent; border-radius: 999px; background: var(--ink); color: #17201e; font-size: 12px; font-weight: 700; transition: background .22s ease, color .22s ease, border-color .22s ease, transform .22s ease; }
+    .button { display: inline-flex; min-height: 47px; align-items: center; justify-content: center; gap: 17px; padding: 0 20px; border: 1px solid transparent; border-radius: 999px; background: var(--ink); color: #171719; font-size: 12px; font-weight: 700; transition: background .22s ease, color .22s ease, border-color .22s ease, transform .22s ease; }
     .button:hover { transform: translateY(-2px); }
     .button--light:hover { background: #fff; }
-    .button--outline { border-color: rgba(244, 241, 235, .4); background: rgba(13, 18, 19, .15); color: var(--ink); }
+    .button--outline { border-color: rgba(244, 241, 235, .4); background: rgba(13, 13, 15, .15); color: var(--ink); }
     .button--outline:hover { border-color: var(--ink); background: rgba(244, 241, 235, .1); }
     .menu-toggle { display: none; }
 
@@ -71,14 +71,14 @@
 
     .section { padding: 120px 32px; }
     .container { width: min(var(--content), 100%); margin-inline: auto; }
-    .intro { background: #101718; }
+    .intro { background: #111214; }
     .intro__grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 75px; align-items: start; }
     .intro__label { padding-top: 13px; }
     .intro h2, .expertise h2, .team h2, .contact h2 { font-family: var(--serif); font-size: 53px; font-weight: 500; line-height: 1.12; text-wrap: balance; }
     .intro h2 { max-width: 660px; margin: 0 0 24px; }
     .intro__copy { max-width: 595px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.9; }
 
-    .services { padding-top: 100px; padding-bottom: 126px; background: #0c1213; }
+    .services { padding-top: 100px; padding-bottom: 126px; background: #0e0f11; }
     .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 49px; }
     .section-heading h2 { max-width: 600px; margin: 17px 0 0; font-family: var(--serif); font-size: 48px; font-weight: 500; line-height: 1.15; text-wrap: balance; }
     .section-heading__note { max-width: 260px; margin: 0 0 5px; color: var(--dim); font-size: 13px; line-height: 1.75; }
@@ -89,25 +89,25 @@
     .service h3 { margin: 48px 0 11px; font-family: var(--serif); font-size: 26px; font-weight: 500; }
     .service p { max-width: 300px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
 
-    .expertise { position: relative; overflow: hidden; background: #151c1c; }
+    .expertise { position: relative; overflow: hidden; background: #151517; }
     .expertise::after { position: absolute; top: -145px; right: -125px; width: 460px; height: 460px; border: 1px solid rgba(199, 142, 104, .12); border-radius: 50%; box-shadow: 0 0 0 45px rgba(199, 142, 104, .025), 0 0 0 90px rgba(199, 142, 104, .018); content: ""; pointer-events: none; }
     .expertise__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr .72fr; gap: 90px; align-items: end; }
     .expertise h2 { max-width: 660px; margin: 19px 0 0; }
     .expertise__copy { max-width: 380px; margin: 0 0 6px; color: var(--muted); font-size: 14px; line-height: 1.9; }
 
-    .team { background: #0c1213; }
+    .team { background: #0e0f11; }
     .team__inner { display: grid; grid-template-columns: .78fr 1.22fr; gap: 75px; align-items: start; }
     .team__label { padding-top: 13px; }
     .team h2 { max-width: 660px; margin: 0 0 22px; }
     .team__copy { max-width: 580px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.9; }
 
-    .contact { padding-top: 95px; padding-bottom: 96px; background: #18201f; }
+    .contact { padding-top: 95px; padding-bottom: 96px; background: #18181a; }
     .contact__inner { display: flex; align-items: end; justify-content: space-between; gap: 48px; }
     .contact h2 { max-width: 650px; margin: 17px 0 15px; }
     .contact__copy { max-width: 540px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
     .contact__action { flex-shrink: 0; }
 
-    .footer { padding: 24px 32px 29px; background: #0a1011; }
+    .footer { padding: 24px 32px 29px; background: #0b0b0d; }
     .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: min(var(--content), 100%); margin-inline: auto; color: var(--dim); font-size: 10px; }
     .footer__brand { color: rgba(244, 241, 235, .82); font-size: 10px; font-weight: 700; letter-spacing: 1.1px; }
     .footer__top { color: var(--muted); transition: color .2s ease; }
@@ -184,7 +184,7 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=29">
+  <link rel="stylesheet" href="site.css?v=33">
   <link rel="stylesheet" href="chatbot.css">
   <script>try { if (sessionStorage.getItem('mf-page-transition') === 'active') document.documentElement.classList.add('page-transition-pending'); } catch {}</script>
 </head>
@@ -226,10 +226,10 @@
     </section>
   </div>
 
-  <section class="about-preview" id="about" aria-labelledby="about-preview-title">
+  <section class="about-preview" aria-labelledby="about">
     <div class="about-preview__inner">
       <div class="about-preview__intro reveal">
-        <h2 id="about-preview-title">About Us</h2>
+        <h2 id="about">About Us</h2>
         <p>MF Customs Brokerage began when two young customs brokers found a shared mindset and passion for the industry. They formed a partnership to help one another grow and work toward a shared ambition.</p>
       </div>
       <div class="about-preview__grid">
@@ -262,14 +262,12 @@
         <article class="purpose-card reveal">
           <p class="eyebrow">Mission</p>
           <h3>Our Mission</h3>
-          <button class="purpose-card__toggle" type="button" aria-expanded="true" aria-controls="mission-copy"><span class="eyebrow">Mission</span><span class="purpose-card__title">Our Mission</span><span class="purpose-card__indicator" aria-hidden="true"></span></button>
-          <div class="purpose-card__copy" id="mission-copy"><div class="purpose-card__copy-inner"><p>Our goal is to make international trade easier for our clients. We achieve this by providing top-notch customs brokerage and logistics services that optimize their supply chain, reduce costs, and improve global competitiveness. We are committed to delivering the highest quality service in all matters related to customs brokerage and logistics solutions, with utmost professionalism and competitiveness, tailored to meet the unique needs and expectations of our clients.</p></div></div>
+          <div class="purpose-card__copy"><p>Our goal is to make international trade easier for our clients. We achieve this by providing top-notch customs brokerage and logistics services that optimize their supply chain, reduce costs, and improve global competitiveness. We are committed to delivering the highest quality service in all matters related to customs brokerage and logistics solutions, with utmost professionalism and competitiveness, tailored to meet the unique needs and expectations of our clients.</p></div>
         </article>
         <article class="purpose-card reveal">
           <p class="eyebrow">Vision</p>
           <h3>Our Vision</h3>
-          <button class="purpose-card__toggle" type="button" aria-expanded="true" aria-controls="vision-copy"><span class="eyebrow">Vision</span><span class="purpose-card__title">Our Vision</span><span class="purpose-card__indicator" aria-hidden="true"></span></button>
-          <div class="purpose-card__copy" id="vision-copy"><div class="purpose-card__copy-inner"><p>To be recognized as one of the capable and efficient customs brokerage company that surpass and cater all the demands and needs of our clients.</p><p>To build a good long lasting relationship with our clients and stakeholders that will be mutually beneficial towards achieving our business goals.</p></div></div>
+          <div class="purpose-card__copy"><p>To be recognized as one of the capable and efficient customs brokerage company that surpass and cater all the demands and needs of our clients.</p><p>To build a good long lasting relationship with our clients and stakeholders that will be mutually beneficial towards achieving our business goals.</p></div>
         </article>
       </div>
       <section class="service-gallery" aria-labelledby="home-service-gallery-title">

@@ -40,28 +40,6 @@ if (mobileDock) {
   window.addEventListener('popstate', updateMobileDock);
 }
 
-const purposeLayout = window.matchMedia('(max-width: 680px)');
-
-document.querySelectorAll('.purpose-card').forEach((card) => {
-  const toggle = card.querySelector('.purpose-card__toggle');
-  if (!toggle) return;
-
-  const copy = card.querySelector('.purpose-card__copy');
-  if (!copy) return;
-  const setExpanded = (expanded) => {
-    toggle.setAttribute('aria-expanded', String(expanded));
-    copy.classList.toggle('is-expanded', expanded);
-    copy.setAttribute('aria-hidden', String(!expanded));
-    copy.inert = !expanded;
-  };
-
-  setExpanded(!purposeLayout.matches);
-  purposeLayout.addEventListener('change', (event) => setExpanded(!event.matches));
-  toggle.addEventListener('click', () => {
-    setExpanded(toggle.getAttribute('aria-expanded') !== 'true');
-  });
-});
-
 document.querySelectorAll('.about-preview__side, .service-gallery__rail').forEach((rail) => {
   let pointerStartX = 0;
   let scrollStart = 0;
