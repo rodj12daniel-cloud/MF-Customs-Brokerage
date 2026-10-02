@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import heroPhoto from './assets/hero.jpg?url';
 import portPhoto from './assets/industrial-port-container-yard.jpg?url';
-import warehousePhoto from './assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg?url';
 import cargoPhoto from './assets/4180878.png?url';
 
 const stage = document.querySelector('[data-customs-carousel]');
@@ -12,7 +11,6 @@ if (stage && canvas) {
   const photoSources = [
     fallbackPhoto,
     portPhoto,
-    warehousePhoto,
     cargoPhoto,
     'https://wallpaperaccess.com/full/4180942.jpg',
     'https://media.istockphoto.com/id/2157040201/photo/truck-carrying-forty-foot-container-leaving-port-terminal-with-ship-and-quay-crane-on-the.jpg?s=612x612&w=0&k=20&c=D4UJJ09jrr-lkrP_6FvIAj6-2PosXIzg-iQ_HcxD0iQ=',
@@ -21,7 +19,7 @@ if (stage && canvas) {
   ];
   const loader = new THREE.TextureLoader().setCrossOrigin('anonymous');
   const scene = new THREE.Scene();
-  const panelAspect = 4 / 3;
+  const panelAspect = 3 / 5;
 
   let renderer;
   try {
@@ -85,7 +83,7 @@ if (stage && canvas) {
       const textures = Array(photoSources.length).fill(firstTexture);
 
       const carousel = new THREE.Group();
-      const panelCount = photoSources.length;
+      const panelCount = 16;
       const panelStep = (Math.PI * 2) / panelCount;
       const radius = 8.4;
       const panelAngle = panelStep * 0.93;
@@ -152,7 +150,7 @@ if (stage && canvas) {
         animationFrame = 0;
         if (!isVisible) return;
         const delta = Math.min(clock.getDelta(), 0.05);
-        if (!isDragging && !reducedMotion.matches) carousel.rotation.y += delta * 0.12;
+        if (!isDragging && !reducedMotion.matches) carousel.rotation.y += delta * 0.04;
         if (Math.abs(carousel.rotation.y) > Math.PI * 2) carousel.rotation.y %= Math.PI * 2;
         renderer.render(scene, camera);
         animationFrame = window.requestAnimationFrame(animate);

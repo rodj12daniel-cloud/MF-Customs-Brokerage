@@ -108,16 +108,15 @@ button { color: inherit; font: inherit; }
 .hero__shade, .hero::after { display: none; }
 .hero h1 { font-family: "Archivo Black", var(--sans); font-weight: 400; text-shadow: none; }
 .hero h1 span { font-weight: 400; }
-.customs-carousel { width: 100%; height: 76svh; min-height: 520px; max-height: 820px; padding-block: 30px; overflow: hidden; background: transparent; }
-.customs-carousel__stage { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: grab; touch-action: pan-y; }
+.customs-carousel { width: 100%; margin-inline: 0; padding: 30px 0; height: 76svh; min-height: 520px; max-height: 820px; overflow: visible; background: transparent; }
+.customs-carousel__stage { position: relative; width: 100%; height: 100%; overflow: visible; cursor: grab; touch-action: pan-y; }
 .customs-carousel__stage:active { cursor: grabbing; }
 .customs-carousel__fallback { position: absolute; inset: 0 -8%; display: flex; align-items: center; justify-content: center; gap: 14px; perspective: 1400px; transform-style: preserve-3d; opacity: 1; transition: opacity .5s ease; }
-.customs-carousel__fallback img { display: block; width: clamp(220px, 28vh, 360px); height: auto; flex: 0 0 auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; backface-visibility: hidden; }
-.customs-carousel__fallback img:nth-child(1) { transform: rotateY(28deg) translateY(22px); }
-.customs-carousel__fallback img:nth-child(2) { transform: rotateY(14deg) translateY(8px); }
-.customs-carousel__fallback img:nth-child(3) { transform: rotateY(0); }
-.customs-carousel__fallback img:nth-child(4) { transform: rotateY(-14deg) translateY(8px); }
-.customs-carousel__fallback img:nth-child(5) { transform: rotateY(-28deg) translateY(22px); }
+.customs-carousel__fallback img { display: block; width: clamp(220px, 28vh, 360px); height: auto; flex: 0 0 auto; aspect-ratio: 3 / 5; object-fit: cover; object-position: center; backface-visibility: hidden; }
+.customs-carousel__fallback img:nth-child(1) { transform: rotateY(21deg) translateY(16px); }
+.customs-carousel__fallback img:nth-child(2) { transform: rotateY(7deg) translateY(3px); }
+.customs-carousel__fallback img:nth-child(3) { transform: rotateY(-7deg) translateY(3px); }
+.customs-carousel__fallback img:nth-child(4) { transform: rotateY(-21deg) translateY(16px); }
 .customs-carousel__canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .6s ease; }
 .customs-carousel__stage.is-loading .customs-carousel__fallback,
 .customs-carousel__stage.is-ready .customs-carousel__fallback { opacity: 0; visibility: hidden; }
