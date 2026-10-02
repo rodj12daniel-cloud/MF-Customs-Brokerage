@@ -1,15 +1,19 @@
 import * as THREE from 'three';
+import heroPhoto from './assets/hero.jpg?url';
+import portPhoto from './assets/industrial-port-container-yard.jpg?url';
+import warehousePhoto from './assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg?url';
+import cargoPhoto from './assets/4180878.png?url';
 
 const stage = document.querySelector('[data-customs-carousel]');
 const canvas = stage?.querySelector('canvas');
 
 if (stage && canvas) {
-  const fallbackPhoto = 'assets/hero.jpg';
+  const fallbackPhoto = heroPhoto;
   const photoSources = [
     fallbackPhoto,
-    'assets/industrial-port-container-yard.jpg',
-    'assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg',
-    'assets/4180878.png',
+    portPhoto,
+    warehousePhoto,
+    cargoPhoto,
     'https://wallpaperaccess.com/full/4180942.jpg',
     'https://media.istockphoto.com/id/2157040201/photo/truck-carrying-forty-foot-container-leaving-port-terminal-with-ship-and-quay-crane-on-the.jpg?s=612x612&w=0&k=20&c=D4UJJ09jrr-lkrP_6FvIAj6-2PosXIzg-iQ_HcxD0iQ=',
     'https://media.istockphoto.com/id/868192214/photo/large-container-ship-at-sea-top-down-aerial-image.jpg?s=612x612&w=0&k=20&c=cNvYsT8ZSuUtpkhqUthDy0oma_6s7vmEJQqyuNSH_xs=',
