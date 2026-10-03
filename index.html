@@ -186,7 +186,7 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=56">
+  <link rel="stylesheet" href="site.css?v=64">
   <link rel="stylesheet" href="chatbot.css?v=4">
   <style>
     .purpose-mobile-actions { display: none; }
@@ -267,7 +267,7 @@
   </style>
   <script>try { if (sessionStorage.getItem('mf-page-transition') === 'active') document.documentElement.classList.add('page-transition-pending'); } catch {}</script>
 </head>
-<body class="home">
+<body id="page-top" class="home">
   <div id="page-transition-root" class="page-transition-root" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <a class="brand" href="#home" aria-label="MF Customs Brokerage home">
@@ -290,6 +290,11 @@
     <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false"><span aria-hidden="true"></span></button>
   </header>
   <div class="home-showcase">
+    <div class="mobile-logo-scroll-track">
+      <section id="home" class="mobile-logo-intro" aria-label="MF Customs Brokerage">
+        <img src="assets/MF UPDATED LOGO.png" alt="MF Customs Brokerage">
+      </section>
+    </div>
     <div id="home-hero-root"></div>
 
     <section class="customs-carousel" aria-label="Customs and logistics services">
@@ -471,7 +476,7 @@
   </footer>
 
   <nav class="mobile-dock" aria-label="Mobile navigation">
-    <a href="#home" aria-current="page"><img class="mobile-dock__icon" src="assets/hugeicons/home-01.svg" alt=""><span>Home</span></a>
+    <a href="#page-top" aria-current="page"><img class="mobile-dock__icon" src="assets/hugeicons/home-01.svg" alt=""><span>Home</span></a>
     <a href="#about"><img class="mobile-dock__icon" src="assets/hugeicons/information-circle.svg" alt=""><span>About</span></a>
     <a href="services.html"><img class="mobile-dock__icon" src="assets/hugeicons/globe-02.svg" alt=""><span>Services</span></a>
     <a href="team.html"><img class="mobile-dock__icon" src="assets/hugeicons/user-group.svg" alt=""><span>Our Team</span></a>

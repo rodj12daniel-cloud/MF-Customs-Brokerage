@@ -5,7 +5,10 @@ import cargoPhoto from './assets/4180878.png?url';
 
 const stage = document.querySelector('[data-customs-carousel]');
 const canvas = stage?.querySelector('canvas');
-const isMobileViewport = window.matchMedia('(max-width: 1020px)').matches;
+const carouselViewport = window.matchMedia('(max-width: 1020px)');
+const isMobileViewport = carouselViewport.matches;
+
+carouselViewport.addEventListener('change', () => window.location.reload());
 
 function initializeMobileServiceDeck() {
   const deck = document.querySelector('[data-service-deck]');
@@ -216,7 +219,7 @@ if (stage && canvas && !isMobileViewport) {
         animationFrame = 0;
         if (!isVisible) return;
         const delta = Math.min(clock.getDelta(), 0.05);
-        if (!isDragging && !reducedMotion.matches) carousel.rotation.y += delta * 0.04;
+        if (!isDragging && !reducedMotion.matches) carousel.rotation.y += delta * 0.1;
         if (Math.abs(carousel.rotation.y) > Math.PI * 2) carousel.rotation.y %= Math.PI * 2;
         renderer.render(scene, camera);
         animationFrame = window.requestAnimationFrame(animate);
