@@ -40,6 +40,46 @@ if (mobileDock) {
   window.addEventListener('popstate', updateMobileDock);
 }
 
+const mobileLogoIntro = document.querySelector('.mobile-logo-intro');
+
+if (mobileLogoIntro) {
+  const logo = mobileLogoIntro.querySelector('img');
+  const phoneViewport = window.matchMedia('(max-width: 600px)');
+  let parallaxFrame = 0;
+
+  const updateLogoParallax = () => {
+    parallaxFrame = 0;
+    if (!logo || !phoneViewport.matches) {
+      document.body.classList.remove('is-logo-intro-visible');
+      return;
+    }
+
+    const track = mobileLogoIntro.parentElement;
+    if (!track) return;
+
+    const introBounds = mobileLogoIntro.getBoundingClientRect();
+    document.body.classList.toggle(
+      'is-logo-intro-visible',
+      introBounds.bottom > 0 && introBounds.top < window.innerHeight,
+    );
+
+    const trackTop = track.getBoundingClientRect().top;
+    const scrollDistance = Math.max(track.offsetHeight - mobileLogoIntro.offsetHeight, 1);
+    const progress = Math.max(0, Math.min(1, -trackTop / scrollDistance));
+    logo.style.setProperty('--logo-scroll-offset', `${progress * 48}px`);
+    logo.style.setProperty('--logo-scroll-opacity', String(1 - progress));
+  };
+
+  const scheduleLogoParallax = () => {
+    if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateLogoParallax);
+  };
+
+  updateLogoParallax();
+  window.addEventListener('scroll', scheduleLogoParallax, { passive: true });
+  window.addEventListener('resize', scheduleLogoParallax);
+  phoneViewport.addEventListener('change', scheduleLogoParallax);
+}
+
 document.querySelectorAll('.about-preview__side, .service-gallery__rail').forEach((rail) => {
   let pointerStartX = 0;
   let scrollStart = 0;

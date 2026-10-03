@@ -34,7 +34,8 @@ export default function AgencyHeroSection() {
       aria-labelledby="hero-title"
       className="home-hero"
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
       variants={sequenceVariants}
     >
       <motion.main id="main" className="home-hero__content" variants={sequenceVariants}>

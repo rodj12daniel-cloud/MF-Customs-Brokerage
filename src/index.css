@@ -15,6 +15,14 @@
   color: #f5f5f3;
 }
 
+.mobile-logo-intro {
+  display: none;
+}
+
+.mobile-logo-scroll-track {
+  display: contents;
+}
+
 .home-showcase > #home-hero-root,
 .home-showcase > .customs-carousel {
   position: relative;
@@ -83,7 +91,7 @@
 
 .home-hero__title em {
   color: #f4f1eb;
-  font-family: var(--font-display);
+  font-family: inherit;
   font-size: 1.12em;
   font-weight: 400;
   line-height: .98;
@@ -228,4 +236,60 @@
 
   .home-hero__trust-copy strong { font-size: 11px; }
   .home-hero__trust-copy span { font-size: 10px; }
+}
+
+@media (max-width: 600px) {
+  .mobile-logo-scroll-track {
+    display: block;
+    height: 200svh;
+  }
+
+  .mobile-logo-intro {
+    position: sticky;
+    top: 0;
+    display: grid;
+    height: 100vh;
+    height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
+    place-items: center;
+    overflow: hidden;
+    background: transparent;
+    animation: mobile-logo-fade 1.8s cubic-bezier(.22,.61,.36,1) both;
+  }
+
+  .mobile-logo-intro img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: min(88vw, 380px);
+    height: auto;
+    filter: brightness(0) invert(1);
+    opacity: var(--logo-scroll-opacity, 1);
+    transform: translate(-50%, calc(-50% - var(--logo-scroll-offset, 0px)));
+    will-change: opacity, transform;
+  }
+
+  @keyframes mobile-logo-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  html[data-theme="light"] .mobile-logo-intro img {
+    filter: none;
+  }
+
+  .mobile-dock {
+    transition: opacity .3s ease, transform .3s ease;
+  }
+
+  body.home.is-logo-intro-visible .mobile-dock,
+  body.home.is-logo-intro-visible .brand,
+  body.home.is-logo-intro-visible .mfc-chatbot {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+  }
 }
