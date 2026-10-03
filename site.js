@@ -44,7 +44,7 @@ const mobileLogoIntro = document.querySelector('.mobile-logo-intro');
 
 if (mobileLogoIntro) {
   const logo = mobileLogoIntro.querySelector('img');
-  const phoneViewport = window.matchMedia('(max-width: 600px)');
+  const phoneViewport = window.matchMedia('(max-width: 680px)');
   const track = mobileLogoIntro.parentElement;
   let parallaxFrame = 0;
   let trackDocumentTop = 0;
@@ -64,8 +64,8 @@ if (mobileLogoIntro) {
     );
 
     const progress = Math.max(0, Math.min(1, (window.scrollY - trackDocumentTop) / scrollDistance));
-    logo.style.setProperty('--logo-scroll-offset', `${progress * 48}px`);
-    logo.style.setProperty('--logo-scroll-opacity', String(1 - progress));
+    mobileLogoIntro.style.setProperty('--logo-scroll-offset', `${progress * 48}px`);
+    mobileLogoIntro.style.setProperty('--logo-scroll-opacity', String(1 - progress));
   };
 
   const scheduleLogoParallax = () => {
@@ -81,6 +81,7 @@ if (mobileLogoIntro) {
     scheduleLogoParallax();
   };
 
+  window.addEventListener('load', measureLogoTrack, { once: true });
   measureLogoTrack();
   window.addEventListener('scroll', scheduleLogoParallax, { passive: true });
   window.addEventListener('resize', measureLogoTrack);
@@ -183,16 +184,22 @@ const createAnimatedDialogControls = (dialog) => {
   };
 };
 
+const profileDialogControls = new Map();
+
 document.querySelectorAll('[data-profile-open]').forEach((button) => {
   const dialog = document.getElementById(button.dataset.profileOpen);
   if (!dialog) return;
-  const controls = createAnimatedDialogControls(dialog);
+  let controls = profileDialogControls.get(dialog);
 
+  if (!controls) {
+    controls = createAnimatedDialogControls(dialog);
+    profileDialogControls.set(dialog, controls);
+    dialog.querySelector('[data-profile-close]')?.addEventListener('click', controls.close);
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) controls.close();
+    });
+  }
   button.addEventListener('click', controls.open);
-  dialog.querySelector('[data-profile-close]')?.addEventListener('click', controls.close);
-  dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) controls.close();
-  });
 });
 
 const contactForm = document.querySelector('[data-contact-form]');

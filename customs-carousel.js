@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import heroPhoto from './assets/hero.jpg?url';
-import portPhoto from './assets/industrial-port-container-yard.jpg?url';
+import portPhoto from './assets/industrial-port-container-yard-optimized.jpg?url';
 import cargoPhoto from './assets/4180878.png?url';
 
 const stage = document.querySelector('[data-customs-carousel]');
@@ -163,7 +163,7 @@ if (stage && canvas && !isMobileViewport) {
       for (let panelIndex = 0; panelIndex < panelCount; panelIndex += 1) {
         const panelCenterAngle = Math.PI + panelIndex * panelStep;
         const startAngle = panelCenterAngle - panelAngle / 2;
-        const geometry = new THREE.CylinderGeometry(radius, radius, panelHeight, 32, 1, true, startAngle, panelAngle);
+        const geometry = new THREE.CylinderGeometry(radius, radius, panelHeight, 8, 1, true, startAngle, panelAngle);
         const material = new THREE.MeshBasicMaterial({ map: textures[panelIndex % textures.length], side: THREE.BackSide });
         const panel = new THREE.Mesh(geometry, material);
         carousel.add(panel);
@@ -217,7 +217,7 @@ if (stage && canvas && !isMobileViewport) {
 
       const animate = () => {
         animationFrame = 0;
-        if (!isVisible) return;
+        if (!isVisible || document.hidden) return;
         const delta = Math.min(clock.getDelta(), 0.05);
         if (!isDragging && !reducedMotion.matches) carousel.rotation.y += delta * 0.1;
         if (Math.abs(carousel.rotation.y) > Math.PI * 2) carousel.rotation.y %= Math.PI * 2;
@@ -227,10 +227,27 @@ if (stage && canvas && !isMobileViewport) {
 
       const visibilityObserver = new IntersectionObserver(([entry]) => {
         isVisible = entry.isIntersecting;
-        if (isVisible && !animationFrame) animationFrame = window.requestAnimationFrame(animate);
+        if (!isVisible && animationFrame) {
+          window.cancelAnimationFrame(animationFrame);
+          animationFrame = 0;
+          clock.getDelta();
+        } else if (isVisible && !document.hidden && !animationFrame) {
+          animationFrame = window.requestAnimationFrame(animate);
+        }
       }, { threshold: 0.02 });
       visibilityObserver.observe(stage);
       animationFrame = window.requestAnimationFrame(animate);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (animationFrame) window.cancelAnimationFrame(animationFrame);
+          animationFrame = 0;
+          clock.getDelta();
+        } else if (isVisible && !animationFrame) {
+          clock.getDelta();
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      });
 
       stage.addEventListener('pointerdown', (event) => {
         if (!event.isPrimary) return;

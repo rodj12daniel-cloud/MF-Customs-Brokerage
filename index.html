@@ -33,6 +33,7 @@
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    .mobile-logo-intro { display: none; }
     body, button, a { font-family: var(--sans); }
     a { color: inherit; text-decoration: none; }
     button { color: inherit; }
@@ -293,23 +294,26 @@
     <div class="mobile-logo-scroll-track">
       <section id="home" class="mobile-logo-intro" aria-label="MF Customs Brokerage">
         <img src="assets/MF UPDATED LOGO.png" alt="MF Customs Brokerage">
+        <a class="mobile-logo-intro__scroll-cue" href="#hero-title" aria-label="Scroll down to the home page">
+          <span aria-hidden="true"></span>
+        </a>
       </section>
     </div>
     <div id="home-hero-root"></div>
 
-    <section class="customs-carousel" aria-label="Customs and logistics services">
+    <section id="home-services" class="customs-carousel" aria-label="Customs and logistics services">
       <div class="customs-carousel__stage is-loading" data-customs-carousel>
         <div class="customs-carousel__fallback" aria-hidden="true">
           <img src="assets/hero.jpg" alt="">
-          <img src="assets/industrial-port-container-yard.jpg" alt="">
+          <img src="assets/industrial-port-container-yard-optimized.jpg" alt="">
           <img src="assets/4180878.png" alt="">
-          <img src="assets/industrial-port-container-yard.jpg" alt="">
+          <img src="assets/industrial-port-container-yard-optimized.jpg" alt="">
         </div>
         <canvas class="customs-carousel__canvas" role="img" aria-label="Slowly rotating curved photos of customs, cargo ports, freight, and shipping"></canvas>
       </div>
       <div class="mobile-service-deck" data-service-deck role="region" aria-roledescription="carousel" aria-label="Customs and logistics services">
         <article class="mobile-service-card" data-service-slide data-position="active" aria-hidden="false">
-          <img src="assets/industrial-port-container-yard.jpg" alt="Container stacks at a shipping port" loading="eager">
+          <img src="assets/industrial-port-container-yard-optimized.jpg" alt="Container stacks at a shipping port" loading="eager">
           <div class="mobile-service-card__copy"><h3>Import &amp; Export Clearance</h3><p>Customs support from arrival through release.</p></div>
         </article>
         <article class="mobile-service-card" data-service-slide data-position="next" aria-hidden="true">
