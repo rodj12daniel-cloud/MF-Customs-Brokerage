@@ -186,8 +186,8 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=52">
-  <link rel="stylesheet" href="chatbot.css">
+  <link rel="stylesheet" href="site.css?v=56">
+  <link rel="stylesheet" href="chatbot.css?v=4">
   <style>
     .purpose-mobile-actions { display: none; }
     @media (max-width: 680px) {
@@ -292,7 +292,7 @@
   <div class="home-showcase">
     <div id="home-hero-root"></div>
 
-    <section class="customs-carousel" aria-label="Customs brokerage and freight photography">
+    <section class="customs-carousel" aria-label="Customs and logistics services">
       <div class="customs-carousel__stage is-loading" data-customs-carousel>
         <div class="customs-carousel__fallback" aria-hidden="true">
           <img src="assets/hero.jpg" alt="">
@@ -301,6 +301,30 @@
           <img src="assets/industrial-port-container-yard.jpg" alt="">
         </div>
         <canvas class="customs-carousel__canvas" role="img" aria-label="Slowly rotating curved photos of customs, cargo ports, freight, and shipping"></canvas>
+      </div>
+      <div class="mobile-service-deck" data-service-deck role="region" aria-roledescription="carousel" aria-label="Customs and logistics services">
+        <article class="mobile-service-card" data-service-slide data-position="active" aria-hidden="false">
+          <img src="assets/industrial-port-container-yard.jpg" alt="Container stacks at a shipping port" loading="eager">
+          <div class="mobile-service-card__copy"><h3>Import &amp; Export Clearance</h3><p>Customs support from arrival through release.</p></div>
+        </article>
+        <article class="mobile-service-card" data-service-slide data-position="next" aria-hidden="true">
+          <img src="assets/4180878.png" alt="Air, sea, and road freight moving together" loading="eager">
+          <div class="mobile-service-card__copy"><h3>Freight Forwarding</h3><p>Coordinated movement across every leg of the journey.</p></div>
+        </article>
+        <article class="mobile-service-card" data-service-slide data-position="hidden" aria-hidden="true">
+          <img src="assets/hero.jpg" alt="A freight truck traveling beside shipping containers" loading="eager">
+          <div class="mobile-service-card__copy"><h3>Trucking Services</h3><p>Reliable cargo transport to keep shipments moving.</p></div>
+        </article>
+        <article class="mobile-service-card" data-service-slide data-position="previous" aria-hidden="true">
+          <img src="assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg" alt="Goods organized in a distribution warehouse" loading="eager">
+          <div class="mobile-service-card__copy"><h3>Tariff Consultancy</h3><p>Practical guidance for customs and tariff requirements.</p></div>
+        </article>
+      </div>
+      <div class="mobile-service-deck__dots" role="group" aria-label="Choose a service">
+        <button type="button" data-service-target="0" aria-label="Show Import and Export Clearance" aria-pressed="true"></button>
+        <button type="button" data-service-target="1" aria-label="Show Freight Forwarding" aria-pressed="false"></button>
+        <button type="button" data-service-target="2" aria-label="Show Trucking Services" aria-pressed="false"></button>
+        <button type="button" data-service-target="3" aria-label="Show Tariff Consultancy" aria-pressed="false"></button>
       </div>
     </section>
   </div>
@@ -373,19 +397,19 @@
           <div class="service-gallery__rail" aria-label="MF Customs Brokerage services">
             <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Import and Export Customs Clearance details" data-service-title="Import and Export Customs Clearance" data-service-items="FCL and LCL|Formal and Informal|Bulk and Break Bulk Cargo|Warehousing">
               <img src="assets/hero.jpg" alt="Cargo truck and containers at a shipping port" loading="lazy">
-              <span class="service-gallery__label"><strong>Import and Export Customs Clearance</strong></span>
+              <span class="service-gallery__label"><strong>Import and Export Customs Clearance</strong><span class="service-gallery__description">Customs support from arrival through release.</span></span>
             </button>
             <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Freight Forwarding details" data-service-title="Freight Forwarding" data-service-items="Air and Sea Freight Forwarding|Domestic and International">
               <img src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Cargo containers at an international port" loading="lazy">
-              <span class="service-gallery__label"><strong>Freight Forwarding</strong></span>
+              <span class="service-gallery__label"><strong>Freight Forwarding</strong><span class="service-gallery__description">Air and sea freight, domestic and international.</span></span>
             </button>
             <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Customs and Tariff Consultancy details" data-service-title="Customs and Tariff Consultancy" data-service-items="Tariff Classification|Computation of Duties and Taxes|Incoterms Inquiry|Customs and Tariff Laws|Rules of Origin">
               <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Trade documents being reviewed at a desk" loading="lazy">
-              <span class="service-gallery__label"><strong>Customs and Tariff Consultancy</strong></span>
+              <span class="service-gallery__label"><strong>Customs and Tariff Consultancy</strong><span class="service-gallery__description">Classification, duties, and trade guidance.</span></span>
             </button>
             <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Other Services details" data-service-title="Other Services" data-service-items="Trucking Services|Import License Accreditation|Lifting of Abandonment|Filing of Tentative Release and Customs Protest">
               <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Truck transporting freight on a highway" loading="lazy">
-              <span class="service-gallery__label"><strong>Other Services</strong></span>
+              <span class="service-gallery__label"><strong>Other Services</strong><span class="service-gallery__description">Trucking, licensing, and customs support.</span></span>
             </button>
           </div>
           <div class="service-gallery__more"><a class="home-hero__button home-hero__button--secondary" href="services.html">Explore services</a></div>
@@ -454,7 +478,7 @@
     <a href="contact.html"><img class="mobile-dock__icon" src="assets/hugeicons/mail-01.svg" alt=""><span>Contact</span></a>
   </nav>
 
-  <script type="module" src="/chatbot.js"></script>
+  <script type="module" src="/chatbot.js?v=4"></script>
   <script type="module" src="/site.js"></script>
   <script type="module" src="customs-carousel.js"></script>
   <script type="module" src="/src/main.tsx"></script>

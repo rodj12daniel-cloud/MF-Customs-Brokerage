@@ -5,8 +5,74 @@ import cargoPhoto from './assets/4180878.png?url';
 
 const stage = document.querySelector('[data-customs-carousel]');
 const canvas = stage?.querySelector('canvas');
+const isMobileViewport = window.matchMedia('(max-width: 1020px)').matches;
 
-if (stage && canvas) {
+function initializeMobileServiceDeck() {
+  const deck = document.querySelector('[data-service-deck]');
+  const slides = [...(deck?.querySelectorAll('[data-service-slide]') ?? [])];
+  const buttons = [...document.querySelectorAll('[data-service-target]')];
+  if (!deck || slides.length < 2) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let activeIndex = 0;
+  let intervalId;
+  let pointerStart;
+
+  const render = () => {
+    slides.forEach((slide, index) => {
+      const offset = (index - activeIndex + slides.length) % slides.length;
+      const position = offset === 0 ? 'active' : offset === 1 ? 'next' : offset === slides.length - 1 ? 'previous' : 'hidden';
+      slide.dataset.position = position;
+      slide.setAttribute('aria-hidden', String(offset !== 0));
+    });
+    buttons.forEach((button, index) => button.setAttribute('aria-pressed', String(index === activeIndex)));
+  };
+
+  const stopRotation = () => window.clearInterval(intervalId);
+  const startRotation = () => {
+    stopRotation();
+    if (!reducedMotion.matches && !document.hidden) {
+      intervalId = window.setInterval(() => {
+        activeIndex = (activeIndex + 1) % slides.length;
+        render();
+      }, 5000);
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeIndex = Number(button.dataset.serviceTarget) % slides.length;
+      render();
+      startRotation();
+    });
+  });
+  deck.addEventListener('pointerdown', (event) => {
+    if (!event.isPrimary) return;
+    pointerStart = { x: event.clientX, y: event.clientY };
+  });
+  window.addEventListener('pointerup', (event) => {
+    if (!pointerStart || !event.isPrimary) return;
+    const deltaX = event.clientX - pointerStart.x;
+    const deltaY = event.clientY - pointerStart.y;
+    pointerStart = undefined;
+    if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    activeIndex = (activeIndex + (deltaX < 0 ? 1 : -1) + slides.length) % slides.length;
+    render();
+    startRotation();
+  });
+  window.addEventListener('pointercancel', () => { pointerStart = undefined; });
+  document.addEventListener('visibilitychange', startRotation);
+  render();
+  startRotation();
+}
+
+if (stage && canvas && isMobileViewport) {
+  stage.classList.remove('is-loading');
+  stage.classList.add('is-static');
+  initializeMobileServiceDeck();
+}
+
+if (stage && canvas && !isMobileViewport) {
   const fallbackPhoto = heroPhoto;
   const photoSources = [
     fallbackPhoto,
