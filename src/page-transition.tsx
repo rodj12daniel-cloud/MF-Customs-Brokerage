@@ -20,7 +20,8 @@ if (transitionRoot) {
     document.documentElement.classList.remove('page-transition-pending');
   }
   const shouldShowOnPageLoad = performance.getEntriesByType('navigation')
-    .some((entry) => entry instanceof PerformanceNavigationTiming
+    .some((entry) => isHomePath
+      && entry instanceof PerformanceNavigationTiming
       && (entry.type === 'navigate' || entry.type === 'reload'));
 
   let loaderRoot: ReturnType<typeof createRoot> | null = null;
@@ -65,6 +66,7 @@ if (transitionRoot) {
 
     const destination = new URL(link.href, window.location.href);
     if (destination.origin !== window.location.origin) return;
+    const isHomeDestination = destination.pathname === '/' || destination.pathname.endsWith('/index.html');
     const isCurrentHomeLink = link.matches('.nav a[aria-current="page"], .mobile-dock a[aria-current="page"]')
       && destination.pathname.endsWith('/index.html')
       && !destination.hash;
@@ -77,6 +79,8 @@ if (transitionRoot) {
       }
       return;
     }
+
+    if (!isHomeDestination) return;
 
     event.preventDefault();
     try {

@@ -1,4 +1,3 @@
-import { ArrowUpRight } from 'lucide-react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from '@/components/ui/theme-toggle';
@@ -55,13 +54,11 @@ export default function AgencyHeroSection() {
           <Button asChild className="home-hero__button home-hero__button--primary">
             <a href="contact.html">
               Request a quote
-              <ArrowUpRight aria-hidden="true" size={17} strokeWidth={1.8} />
             </a>
           </Button>
           <Button asChild variant="outline" className="home-hero__button home-hero__button--secondary">
             <a href="services.html">
               Explore services
-              <ArrowUpRight aria-hidden="true" size={17} strokeWidth={1.8} />
             </a>
           </Button>
         </motion.div>

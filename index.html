@@ -186,8 +186,85 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=36">
+  <link rel="stylesheet" href="site.css?v=52">
   <link rel="stylesheet" href="chatbot.css">
+  <style>
+    .purpose-mobile-actions { display: none; }
+    @media (max-width: 680px) {
+      .purpose-cards { display: none; }
+      .purpose-mobile-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 24px;
+      }
+      .purpose-mobile-actions button {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+      }
+      .purpose-dialog.service-gallery__dialog {
+        position: fixed;
+        width: min(620px, calc(100vw - 32px));
+        max-width: none;
+        max-height: 86vh;
+        margin: auto;
+        padding: 44px 18px 22px;
+        overflow-y: auto;
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 24px;
+        background: radial-gradient(ellipse at 100% 0, rgba(198,54,54,.12), transparent 38%), #111214;
+        color: var(--ink);
+        box-shadow: 0 32px 100px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.06);
+      }
+      .purpose-dialog.service-gallery__dialog::before {
+        position: absolute;
+        top: 0;
+        right: 28px;
+        left: 28px;
+        height: 3px;
+        border-radius: 0 0 999px 999px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        content: "";
+      }
+      .purpose-dialog.service-gallery__dialog[open] {
+        animation: modern-dialog-in .28s cubic-bezier(.2,.75,.25,1) both;
+      }
+      .purpose-dialog.service-gallery__dialog.is-closing {
+        animation: modern-dialog-out .2s ease both;
+        pointer-events: none;
+      }
+      .purpose-dialog.service-gallery__dialog::backdrop {
+        background: rgba(4,8,9,.72);
+        backdrop-filter: blur(8px);
+      }
+      .purpose-dialog.service-gallery__dialog[open]::backdrop {
+        animation: modern-backdrop-in .24s ease both;
+      }
+      .purpose-dialog.service-gallery__dialog.is-closing::backdrop {
+        animation: modern-backdrop-out .2s ease both;
+      }
+      @keyframes modern-dialog-in {
+        from { opacity: 0; transform: translateY(18px) scale(.97); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes modern-dialog-out {
+        from { opacity: 1; transform: translateY(0) scale(1); }
+        to { opacity: 0; transform: translateY(12px) scale(.98); }
+      }
+      @keyframes modern-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes modern-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+      html[data-theme="light"] .purpose-dialog.service-gallery__dialog {
+        border-color: rgba(37,35,38,.16);
+        background: radial-gradient(ellipse at 100% 0, rgba(198,54,54,.08), transparent 38%), #fff;
+        color: #252326;
+        box-shadow: 0 24px 90px rgba(33,27,26,.2);
+      }
+      html[data-theme="light"] .purpose-dialog.service-gallery__dialog::backdrop {
+        background: rgba(31,24,24,.48);
+      }
+    }
+  </style>
   <script>try { if (sessionStorage.getItem('mf-page-transition') === 'active') document.documentElement.classList.add('page-transition-pending'); } catch {}</script>
 </head>
 <body class="home">
@@ -272,6 +349,24 @@
           <div class="purpose-card__copy"><p>To be recognized as one of the capable and efficient customs brokerage company that surpass and cater all the demands and needs of our clients.</p><p>To build a good long lasting relationship with our clients and stakeholders that will be mutually beneficial towards achieving our business goals.</p></div>
         </article>
       </div>
+      <div class="purpose-mobile-actions" aria-label="Our vision and mission">
+        <button class="home-hero__button home-hero__button--secondary purpose-mobile-actions__button" type="button" data-purpose-open="0" aria-haspopup="dialog" aria-controls="purpose-dialog">
+          Mission
+        </button>
+        <button class="home-hero__button home-hero__button--secondary purpose-mobile-actions__button" type="button" data-purpose-open="1" aria-haspopup="dialog" aria-controls="purpose-dialog">
+          Vision
+        </button>
+      </div>
+      <dialog class="service-gallery__dialog purpose-dialog" id="purpose-dialog" aria-label="Vision and mission details">
+        <button class="service-gallery__close" type="button" data-gallery-close aria-label="Close details">&times;</button>
+        <div class="service-gallery__details">
+          <p class="eyebrow">Our Purpose</p>
+          <h2 data-purpose-title></h2>
+          <p>Learn more about our purpose:</p>
+          <ul data-purpose-items></ul>
+          <a class="button button--light" href="contact.html">Contact Us</a>
+        </div>
+      </dialog>
       <section class="service-gallery" aria-labelledby="home-service-gallery-title">
         <div class="service-gallery__inner">
           <div class="service-gallery__intro reveal"><div><p class="eyebrow">What We Do</p><h2 id="home-service-gallery-title">Services that keep trade moving.</h2></div><p>From customs clearance and freight forwarding to tariff consultancy and related support services.</p></div>
@@ -293,7 +388,7 @@
               <span class="service-gallery__label"><strong>Other Services</strong></span>
             </button>
           </div>
-          <div class="service-gallery__more"><a class="button button--outline" href="services.html">See more services <span aria-hidden="true">&#8594;</span></a></div>
+          <div class="service-gallery__more"><a class="home-hero__button home-hero__button--secondary" href="services.html">Explore services</a></div>
         </div>
         <dialog class="service-gallery__dialog" aria-label="Service details">
           <button class="service-gallery__close" type="button" data-gallery-close aria-label="Close service details">&times;</button>
@@ -317,7 +412,6 @@
     <div class="about-preview__inner">
       <div class="trade-organizations">
         <div class="trade-organizations__heading reveal">
-          <p class="eyebrow">Philippine Customs &amp; Trade</p>
           <h3>Accreditations</h3>
         </div>
         <div class="trade-organizations__logos">

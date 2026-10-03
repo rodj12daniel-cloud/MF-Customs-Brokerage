@@ -10,12 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=36">
+  <link rel="stylesheet" href="site.css?v=61">
   <link rel="stylesheet" href="chatbot.css">
   <script>try { if (sessionStorage.getItem('mf-page-transition') === 'active') document.documentElement.classList.add('page-transition-pending'); } catch {}</script>
   <script>document.documentElement.classList.add('js');</script>
 </head>
-<body class="page">
+<body class="page page--services">
   <div id="page-transition-root" class="page-transition-root" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <a class="brand" href="index.html" aria-label="MF Customs Brokerage home"><img class="brand__logo" src="assets/mflogo-display.png" alt=""><span class="brand__name"><span>MF CUSTOMS</span><span>BROKERAGE</span></span></a>
@@ -31,43 +31,59 @@
       <div class="service-gallery__inner">
         <div class="service-gallery__intro reveal"><div><h2 id="services-gallery-title">Overview</h2></div><p>Explore our clearance, freight forwarding, consultancy, and related services.</p></div>
         <div class="service-gallery__rail" aria-label="MF Customs Brokerage services">
-          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Import and Export Customs Clearance details" data-service-title="Import and Export Customs Clearance" data-service-items="FCL and LCL|Formal and Informal|Bulk and Break Bulk Cargo|Warehousing">
+          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Import and Export Customs Clearance details" data-service-title="Import and Export Customs Clearance" data-service-overview="We help manage the customs clearance process for import and export shipments, including full and less-than-container loads, formal and informal entries, and bulk or break-bulk cargo. Our team coordinates shipment information and required documentation to support accurate declarations and communication with Customs. Warehousing can also be coordinated when needed, giving clients a clearer path from cargo arrival through the next stage of delivery." data-service-items="FCL and LCL|Formal and Informal|Bulk and Break Bulk Cargo|Warehousing">
             <img src="assets/hero.jpg" alt="Cargo truck and containers at a shipping port" loading="lazy">
-            <span class="service-gallery__label"><strong>Import and Export Customs Clearance</strong></span>
+            <span class="service-gallery__label"><strong>Import and Export Customs Clearance</strong><span class="service-gallery__mobile-action">View details <span aria-hidden="true"></span></span></span>
           </button>
-          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Freight Forwarding details" data-service-title="Freight Forwarding" data-service-items="Air and Sea Freight Forwarding|Domestic and International">
+          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Freight Forwarding details" data-service-title="Freight Forwarding" data-service-overview="We coordinate air and sea freight for domestic and international shipments, helping clients plan the movement of cargo between origin and destination. From reviewing shipment requirements to coordinating transport arrangements and supporting documents, we help keep the process organized across the different stages of a shipment. Each forwarding plan is shaped around the cargo, route, timing, and information available for the request." data-service-items="Air and Sea Freight Forwarding|Domestic and International">
             <img src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Cargo containers at an international port" loading="lazy">
-            <span class="service-gallery__label"><strong>Freight Forwarding</strong></span>
+            <span class="service-gallery__label"><strong>Freight Forwarding</strong><span class="service-gallery__mobile-action">View details <span aria-hidden="true"></span></span></span>
           </button>
-          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Customs and Tariff Consultancy details" data-service-title="Customs and Tariff Consultancy" data-service-items="Tariff Classification|Computation of Duties and Taxes|Incoterms Inquiry|Customs and Tariff Laws|Rules of Origin">
+          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Customs and Tariff Consultancy details" data-service-title="Customs and Tariff Consultancy" data-service-overview="We provide practical guidance on tariff classification, estimated duties and taxes, Incoterms, customs and tariff regulations, and rules of origin. By reviewing the details of a shipment and the available trade documents, we help clients understand relevant requirements and consider their next steps. Clear, shipment-specific guidance can support better preparation and informed decisions throughout import and export planning." data-service-items="Tariff Classification|Computation of Duties and Taxes|Incoterms Inquiry|Customs and Tariff Laws|Rules of Origin">
             <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Trade documents being reviewed at a desk" loading="lazy">
-            <span class="service-gallery__label"><strong>Customs and Tariff Consultancy</strong></span>
+            <span class="service-gallery__label"><strong>Customs and Tariff Consultancy</strong><span class="service-gallery__mobile-action">View details <span aria-hidden="true"></span></span></span>
           </button>
-          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Trucking Services details" data-service-title="Trucking Services" data-service-items="Trucking Services">
+          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Trucking Services details" data-service-title="Trucking Services" data-service-overview="We coordinate trucking for cargo moving between ports, warehouses, and other requested destinations. Transport arrangements are considered alongside shipment details and delivery requirements so clients can plan the movement of goods beyond the port or customs stage. Our team helps communicate the relevant logistics information and coordinate the requested service based on the cargo and route." data-service-items="Trucking Services">
             <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Truck transporting freight on a highway" loading="lazy">
-            <span class="service-gallery__label"><strong>Trucking Services</strong></span>
+            <span class="service-gallery__label"><strong>Trucking Services</strong><span class="service-gallery__mobile-action">View details <span aria-hidden="true"></span></span></span>
           </button>
-          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Import License Accreditation details" data-service-title="Import License Accreditation" data-service-items="Import License Accreditation">
+          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Import License Accreditation details" data-service-title="Import License Accreditation" data-service-overview="We assist businesses with import license accreditation by helping them understand the process, organize relevant business and shipment information, and prepare for the requirements that apply to their application. Our support is tailored to the client's circumstances and the accreditation being pursued, helping make the necessary steps clearer before documents are submitted to the appropriate agency." data-service-items="Import License Accreditation">
             <img src="assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg" alt="Import goods stored in a distribution warehouse" loading="lazy">
-            <span class="service-gallery__label"><strong>Import License Accreditation</strong></span>
+            <span class="service-gallery__label"><strong>Import License Accreditation</strong><span class="service-gallery__mobile-action">View details <span aria-hidden="true"></span></span></span>
           </button>
-          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Lifting of Abandonment details" data-service-title="Lifting of Abandonment" data-service-items="Lifting of Abandonment">
+          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Lifting of Abandonment details" data-service-title="Lifting of Abandonment" data-service-overview="When cargo has been treated as abandoned, we help clients review the shipment status and understand the steps involved in requesting a lifting of abandonment. Support may include organizing shipment records, preparing relevant supporting documents, and coordinating the request with the appropriate Customs office. Requirements and decisions depend on the specific shipment and remain subject to Customs review." data-service-items="Lifting of Abandonment">
             <img src="assets/4180878.png" alt="Air, sea, and road freight moving international cargo" loading="lazy">
-            <span class="service-gallery__label"><strong>Lifting of Abandonment</strong></span>
+            <span class="service-gallery__label"><strong>Lifting of Abandonment</strong><span class="service-gallery__mobile-action">View details <span aria-hidden="true"></span></span></span>
           </button>
-          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Tentative Release and Customs Protest details" data-service-title="Tentative Release and Customs Protest" data-service-items="Filing of tentative release and Customs Protest">
+          <button class="service-gallery__item" type="button" data-gallery-open aria-label="View Tentative Release and Customs Protest details" data-service-title="Tentative Release and Customs Protest" data-service-overview="We assist with filing requests for tentative release and customs protests when a shipment requires formal review or action. Our team helps organize the relevant entry information and supporting records, prepare the filing for the client's circumstances, and coordinate its submission through the appropriate process. Each matter is handled according to its specific facts and documentation, with decisions remaining subject to Customs review." data-service-items="Filing of tentative release and Customs Protest">
             <img src="assets/industrial-port-container-yard.jpg" alt="Container yard at a customs port" loading="lazy">
-            <span class="service-gallery__label"><strong>Tentative Release and Customs Protest</strong></span>
+            <span class="service-gallery__label"><strong>Tentative Release and Customs Protest</strong><span class="service-gallery__mobile-action">View details <span aria-hidden="true"></span></span></span>
           </button>
         </div>
       </div>
       <dialog class="service-gallery__dialog" aria-label="Service details">
-        <button class="service-gallery__close" type="button" data-gallery-close aria-label="Close service details">&times;</button>
+        <div class="service-gallery__mobile-photo">
+          <img data-gallery-photo alt="">
+          <div class="service-gallery__mobile-photo-shade" aria-hidden="true"></div>
+          <button class="service-gallery__close" type="button" data-gallery-close aria-label="Close service details">&times;</button>
+          <div class="service-gallery__mobile-photo-caption">
+            <h2 data-gallery-photo-title></h2>
+          </div>
+        </div>
         <div class="service-gallery__details">
-          <p class="eyebrow">Service Details</p>
-          <h2 data-gallery-title></h2>
-          <p>Our services include:</p>
-          <ul data-gallery-items></ul>
+          <p class="eyebrow service-gallery__desktop-eyebrow">Service Details</p>
+          <h2 class="service-gallery__desktop-title" data-gallery-title></h2>
+          <div class="service-gallery__mobile-tabs" role="tablist" aria-label="Service information">
+            <button type="button" role="tab" id="service-overview-tab" aria-controls="service-overview-panel" aria-selected="true" data-gallery-tab="overview">Overview</button>
+            <button type="button" role="tab" id="service-details-tab" aria-controls="service-details-panel" aria-selected="false" data-gallery-tab="details">Details</button>
+          </div>
+          <section class="service-gallery__mobile-overview" id="service-overview-panel" role="tabpanel" aria-labelledby="service-overview-tab" data-gallery-panel="overview">
+            <p data-gallery-summary></p>
+          </section>
+          <section class="service-gallery__mobile-details" id="service-details-panel" role="tabpanel" aria-labelledby="service-details-tab" data-gallery-panel="details" hidden>
+            <p>Our services include:</p>
+            <ul data-gallery-items></ul>
+          </section>
           <a class="button button--light" href="contact.html">Request a Quote</a>
         </div>
       </dialog>

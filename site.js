@@ -96,14 +96,55 @@ document.querySelectorAll('.about-preview__side, .service-gallery__rail').forEac
   }, true);
 });
 
+const createAnimatedDialogControls = (dialog) => {
+  let closeTimer;
+  let finishClose;
+
+  const close = () => {
+    if (!dialog.open || dialog.classList.contains('is-closing')) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      dialog.close();
+      return;
+    }
+
+    dialog.classList.add('is-closing');
+    finishClose = (event) => {
+      if (event && (event.target !== dialog || event.animationName !== 'modern-dialog-out')) return;
+      dialog.removeEventListener('animationend', finishClose);
+      window.clearTimeout(closeTimer);
+      if (dialog.open) dialog.close();
+    };
+    dialog.addEventListener('animationend', finishClose);
+    closeTimer = window.setTimeout(() => finishClose(), 350);
+  };
+
+  dialog.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    close();
+  });
+  dialog.addEventListener('close', () => {
+    window.clearTimeout(closeTimer);
+    dialog.classList.remove('is-closing');
+  });
+
+  return {
+    open: () => {
+      dialog.classList.remove('is-closing');
+      dialog.showModal();
+    },
+    close,
+  };
+};
+
 document.querySelectorAll('[data-profile-open]').forEach((button) => {
   const dialog = document.getElementById(button.dataset.profileOpen);
   if (!dialog) return;
+  const controls = createAnimatedDialogControls(dialog);
 
-  button.addEventListener('click', () => dialog.showModal());
-  dialog.querySelector('[data-profile-close]')?.addEventListener('click', () => dialog.close());
+  button.addEventListener('click', controls.open);
+  dialog.querySelector('[data-profile-close]')?.addEventListener('click', controls.close);
   dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) dialog.close();
+    if (event.target === dialog) controls.close();
   });
 });
 
@@ -128,7 +169,7 @@ contactForm?.addEventListener('submit', (event) => {
 
 const contactSlides = [...document.querySelectorAll('[data-contact-slide]')];
 
-if (contactSlides.length > 1) {
+if (contactSlides.length > 1 && window.matchMedia('(min-width: 1021px)').matches) {
   let activeContactSlide = 0;
 
   window.setInterval(() => {
@@ -154,6 +195,37 @@ if (storySlides.length > 1) {
   }, 4000);
 }
 
+const purposeDialog = document.querySelector('#purpose-dialog');
+
+if (purposeDialog instanceof HTMLDialogElement) {
+  const purposeTitle = purposeDialog.querySelector('[data-purpose-title]');
+  const purposeItems = purposeDialog.querySelector('[data-purpose-items]');
+  const controls = createAnimatedDialogControls(purposeDialog);
+
+  document.querySelectorAll('[data-purpose-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const cardIndex = Number(button.dataset.purposeOpen);
+      const card = Number.isInteger(cardIndex) ? document.querySelectorAll('.purpose-card')[cardIndex] : null;
+      const title = card?.querySelector('h3')?.textContent;
+      const paragraphs = [...(card?.querySelectorAll('.purpose-card__copy > p') ?? [])];
+      if (!title || !paragraphs.length) return;
+
+      purposeTitle.textContent = title;
+      purposeItems.replaceChildren(...paragraphs.map((paragraph) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = paragraph.textContent;
+        return listItem;
+      }));
+      controls.open();
+    });
+  });
+
+  purposeDialog.querySelector('[data-gallery-close]')?.addEventListener('click', controls.close);
+  purposeDialog.addEventListener('click', (event) => {
+    if (event.target === purposeDialog) controls.close();
+  });
+}
+
 document.querySelectorAll('.service-gallery').forEach((gallery) => {
   const galleryButtons = [...gallery.querySelectorAll('[data-gallery-open]')];
   const galleryDialog = gallery.querySelector('.service-gallery__dialog');
@@ -161,22 +233,59 @@ document.querySelectorAll('.service-gallery').forEach((gallery) => {
 
   const galleryTitle = galleryDialog.querySelector('[data-gallery-title]');
   const galleryItems = galleryDialog.querySelector('[data-gallery-items]');
+  const galleryPhoto = galleryDialog.querySelector('[data-gallery-photo]');
+  const galleryPhotoTitle = galleryDialog.querySelector('[data-gallery-photo-title]');
+  const gallerySummary = galleryDialog.querySelector('[data-gallery-summary]');
+  const galleryTabs = [...galleryDialog.querySelectorAll('[data-gallery-tab]')];
+  const galleryPanels = [...galleryDialog.querySelectorAll('[data-gallery-panel]')];
+  const controls = createAnimatedDialogControls(galleryDialog);
+  const mobileTabs = window.matchMedia('(max-width: 1020px)');
+  let activeGalleryPanel = 'overview';
+
+  const updateGalleryPanels = () => {
+    galleryTabs.forEach((tab) => {
+      tab.setAttribute('aria-selected', String(tab.dataset.galleryTab === activeGalleryPanel));
+    });
+    galleryPanels.forEach((panel) => {
+      panel.hidden = mobileTabs.matches && panel.dataset.galleryPanel !== activeGalleryPanel;
+    });
+  };
 
   galleryButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      galleryTitle.textContent = button.dataset.serviceTitle;
+      const title = button.dataset.serviceTitle;
+      const image = button.querySelector('img');
+      galleryTitle.textContent = title;
+      if (galleryPhoto && image) {
+        galleryPhoto.src = image.currentSrc || image.src;
+        galleryPhoto.alt = image.alt;
+        galleryPhotoTitle.textContent = title;
+        gallerySummary.textContent = button.dataset.serviceOverview
+          || `MF Customs Brokerage provides ${title.toLowerCase()} tailored to your cargo and business requirements.`;
+      }
       galleryItems.replaceChildren(...button.dataset.serviceItems.split('|').map((item) => {
         const listItem = document.createElement('li');
         listItem.textContent = item;
         return listItem;
       }));
-      galleryDialog.showModal();
+      activeGalleryPanel = 'overview';
+      updateGalleryPanels();
+      controls.open();
     });
   });
 
-  galleryDialog.querySelector('[data-gallery-close]')?.addEventListener('click', () => galleryDialog.close());
+  galleryTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      activeGalleryPanel = tab.dataset.galleryTab;
+      updateGalleryPanels();
+    });
+  });
+
+  mobileTabs.addEventListener('change', updateGalleryPanels);
+
+  galleryDialog.querySelector('[data-gallery-close]')?.addEventListener('click', controls.close);
   galleryDialog.addEventListener('click', (event) => {
-    if (event.target === galleryDialog) galleryDialog.close();
+    if (event.target === galleryDialog) controls.close();
   });
 });
 
