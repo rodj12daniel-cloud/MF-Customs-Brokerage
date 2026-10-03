@@ -45,27 +45,25 @@ const mobileLogoIntro = document.querySelector('.mobile-logo-intro');
 if (mobileLogoIntro) {
   const logo = mobileLogoIntro.querySelector('img');
   const phoneViewport = window.matchMedia('(max-width: 600px)');
+  const track = mobileLogoIntro.parentElement;
   let parallaxFrame = 0;
+  let trackDocumentTop = 0;
+  let trackDocumentBottom = 0;
+  let scrollDistance = 1;
 
   const updateLogoParallax = () => {
     parallaxFrame = 0;
-    if (!logo || !phoneViewport.matches) {
+    if (!logo || !track || !phoneViewport.matches) {
       document.body.classList.remove('is-logo-intro-visible');
       return;
     }
 
-    const track = mobileLogoIntro.parentElement;
-    if (!track) return;
-
-    const introBounds = mobileLogoIntro.getBoundingClientRect();
     document.body.classList.toggle(
       'is-logo-intro-visible',
-      introBounds.bottom > 0 && introBounds.top < window.innerHeight,
+      trackDocumentBottom > window.scrollY && trackDocumentTop < window.scrollY + window.innerHeight,
     );
 
-    const trackTop = track.getBoundingClientRect().top;
-    const scrollDistance = Math.max(track.offsetHeight - mobileLogoIntro.offsetHeight, 1);
-    const progress = Math.max(0, Math.min(1, -trackTop / scrollDistance));
+    const progress = Math.max(0, Math.min(1, (window.scrollY - trackDocumentTop) / scrollDistance));
     logo.style.setProperty('--logo-scroll-offset', `${progress * 48}px`);
     logo.style.setProperty('--logo-scroll-opacity', String(1 - progress));
   };
@@ -74,10 +72,19 @@ if (mobileLogoIntro) {
     if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateLogoParallax);
   };
 
-  updateLogoParallax();
+  const measureLogoTrack = () => {
+    if (!track) return;
+    trackDocumentTop = track.getBoundingClientRect().top + window.scrollY;
+    const trackHeight = track.offsetHeight;
+    trackDocumentBottom = trackDocumentTop + trackHeight;
+    scrollDistance = Math.max(trackHeight - mobileLogoIntro.offsetHeight, 1);
+    scheduleLogoParallax();
+  };
+
+  measureLogoTrack();
   window.addEventListener('scroll', scheduleLogoParallax, { passive: true });
-  window.addEventListener('resize', scheduleLogoParallax);
-  phoneViewport.addEventListener('change', scheduleLogoParallax);
+  window.addEventListener('resize', measureLogoTrack);
+  phoneViewport.addEventListener('change', measureLogoTrack);
 }
 
 document.querySelectorAll('.about-preview__side, .service-gallery__rail').forEach((rail) => {
