@@ -150,14 +150,14 @@ button { color: inherit; font: inherit; }
 .page-banner { position: relative; overflow: hidden; padding: 95px 32px 83px; border-bottom: 1px solid var(--line); background: linear-gradient(115deg, rgba(18,18,20,.94), rgba(17,17,19,.82) 60%, rgba(24,24,26,.76)); }
 .page-banner--contact { display: flex; min-height: 360px; align-items: flex-end; padding: 96px 32px 44px; }
 .page-banner--services { display: flex; min-height: 360px; align-items: end; padding-top: 120px; padding-bottom: 44px; background: transparent; }
-.page .page-banner--services h1 { max-width: 100%; font-family: var(--serif); font-size: 96px; font-weight: 500; line-height: 1.02; }
+.page .page-banner--services h1 { max-width: 100%; font-size: 96px; font-weight: 500; line-height: 1.02; }
 .page-banner--services::before { position: absolute; z-index: 0; inset: 0; background: linear-gradient(90deg, rgba(7,11,12,.78), rgba(7,11,12,.38) 58%, rgba(7,11,12,.1)), linear-gradient(0deg, rgba(7,11,12,.34), transparent 68%), url("assets/industrial-port-container-yard.jpg") center 55% / cover no-repeat; content: ""; }
 .page-banner--services::after { display: none; }
 .page-banner::after { position: absolute; top: -250px; right: max(-180px, calc((100vw - 1450px) / 2)); width: 620px; height: 620px; border: 1px solid rgba(198, 54, 54, .12); border-radius: 50%; box-shadow: 0 0 0 55px rgba(198, 54, 54, .025), 0 0 0 110px rgba(198, 54, 54, .018); content: ""; pointer-events: none; }
 .page-banner__inner, .page-content, .page-cta__inner { position: relative; z-index: 1; width: min(var(--content), 100%); margin-inline: auto; }
 .page-banner--center .page-banner__inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .page-banner .eyebrow { margin-bottom: 17px; }
-.page-banner h1 { max-width: 800px; margin: 0 0 18px; font-family: var(--serif); font-size: 58px; font-weight: 400; letter-spacing: 0; line-height: 1.08; text-wrap: balance; }
+.page-banner h1 { max-width: 800px; margin: 0 0 18px; font-family: var(--sans); font-size: 58px; font-weight: 400; letter-spacing: 0; line-height: 1.08; text-wrap: balance; }
 .page-banner--center h1 { max-width: 100%; font-weight: 500; text-transform: none; }
 .page-banner__copy { max-width: 650px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.85; }
 .page-content { padding: 72px 32px 96px; }
