@@ -10,12 +10,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=80">
+  <link rel="stylesheet" href="site.css?v=83">
+  <link rel="stylesheet" href="contact-page.css?v=1">
   <link rel="stylesheet" href="chatbot.css?v=4">
   <script>const navigationEntry = performance.getEntriesByType('navigation')[0]; if ((location.pathname === '/' || location.pathname.endsWith('/index.html')) && navigationEntry && (navigationEntry.type === 'navigate' || navigationEntry.type === 'reload')) document.documentElement.classList.add('page-transition-pending'); try { if (sessionStorage.getItem('mf-page-transition') === 'active') document.documentElement.classList.add('page-transition-pending'); } catch {}</script>
   <script>document.documentElement.classList.add('js');</script>
 </head>
-<body class="page">
+<body class="page page--contact">
   <div id="page-transition-root" class="page-transition-root" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <a class="brand" href="index.html#home" aria-label="MF Customs Brokerage home"><img class="brand__logo" src="assets/mflogo-display.png" alt=""><span class="brand__name"><span>MF CUSTOMS</span><span>BROKERAGE</span></span></a>
@@ -26,7 +27,13 @@
     <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false"><span aria-hidden="true"></span></button>
   </header>
   <main class="page-main" id="main">
-    <section class="page-banner page-banner--contact"><div class="page-banner__inner reveal"><p class="eyebrow">Contact</p><h1>Let's talk about your next shipment.</h1><p class="page-banner__copy">Start a conversation about your customs brokerage, logistics or tariff requirements.</p></div></section>
+    <section class="page-banner page-banner--contact contact-showcase" aria-labelledby="contact-title">
+      <div class="contact-showcase__intro reveal">
+        <p class="contact-showcase__eyebrow"><span>MF Customs Brokerage</span><span aria-hidden="true">/</span><span>Contact</span></p>
+        <h1 id="contact-title">Let's talk about your <span>next shipment.</span></h1>
+        <p class="contact-showcase__copy">Start a conversation about your customs brokerage, logistics or tariff requirements.</p>
+      </div>
+    </section>
     <section class="contact-request">
       <div class="contact-request__inner">
         <form class="contact-form reveal" data-contact-form data-recipient="rodj12daniel@gmail.com" action="mailto:rodj12daniel@gmail.com" method="post" enctype="text/plain">

@@ -1694,6 +1694,9 @@ html[data-theme="light"] .mfc-chatbot__input {
 .home .home-services__cta .home-services__button,
 body:not(.page--services) .header__action .button,
 body:not(.page--services) .page-cta .button,
+.page--services .header__action .button,
+.page--services .page-cta .button,
+.page--services .service-gallery__dialog .service-gallery__details .button,
 .contact-form__submit,
 .mfc-chatbot .mfc-chatbot__launcher {
   border-color: rgba(255,255,255,.38);
@@ -1709,6 +1712,9 @@ body:not(.page--services) .page-cta .button,
 .home .home-services__cta .home-services__button:hover,
 body:not(.page--services) .header__action .button:hover,
 body:not(.page--services) .page-cta .button:hover,
+.page--services .header__action .button:hover,
+.page--services .page-cta .button:hover,
+.page--services .service-gallery__dialog .service-gallery__details .button:hover,
 .contact-form__submit:hover,
 .mfc-chatbot .mfc-chatbot__launcher:hover {
   border-color: rgba(255,255,255,.64);
