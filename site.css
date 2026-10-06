@@ -1078,6 +1078,10 @@ html[data-theme="light"] .home-hero__eyebrow {
   color: #555258;
 }
 
+html[data-theme="light"] .home-hero__title em {
+  background-image: linear-gradient(100deg, #b92730 0%, #9e1f24 100%);
+}
+
 html[data-theme="light"] .home-hero__copy {
   color: #555258;
 }
