@@ -1,16 +1,24 @@
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from '@/components/ui/theme-toggle';
+import cityTruckImage from '../../../assets/hero-marquee-city-truck.jpg';
+import containerShipImage from '../../../assets/hero-marquee-container-ship.jpg';
+import heavyLiftImage from '../../../assets/hero-marquee-heavy-lift.jpg';
+import portAerialImage from '../../../assets/hero-marquee-port-aerial.jpg';
+import warehouseForkliftImage from '../../../assets/hero-marquee-warehouse-forklift.jpg';
+import distributionWarehouseImage from '../../../assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg';
+import industrialPortImage from '../../../assets/industrial-port-container-yard.jpg';
+import heroImage from '../../../assets/hero.jpg';
 
 const marqueeImages = [
-  '/assets/hero-marquee-container-ship.jpg',
-  '/assets/hero-marquee-city-truck.jpg',
-  '/assets/hero-marquee-warehouse-forklift.jpg',
-  '/assets/hero-marquee-port-aerial.jpg',
-  '/assets/hero-marquee-heavy-lift.jpg',
-  '/assets/industrial-port-container-yard.jpg',
-  '/assets/hero.jpg',
-  '/assets/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg',
+  containerShipImage,
+  cityTruckImage,
+  warehouseForkliftImage,
+  portAerialImage,
+  heavyLiftImage,
+  industrialPortImage,
+  heroImage,
+  distributionWarehouseImage,
 ];
 
 const entrance: Variants = {

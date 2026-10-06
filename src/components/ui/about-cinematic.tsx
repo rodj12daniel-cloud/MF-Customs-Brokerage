@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, Check, CircleDot } from 'lucide-react';
+import brandLogo from '../../../assets/mflogo-display.png';
 import './about-cinematic.css';
 
 if (typeof window !== 'undefined') {
@@ -229,7 +230,7 @@ export default function AboutCinematic() {
             </div>
 
             <div className="about-cinematic__brand" aria-hidden="true">
-              <img src="/assets/mflogo-display.png" alt="" />
+              <img src={brandLogo} alt="" />
             </div>
           </div>
 

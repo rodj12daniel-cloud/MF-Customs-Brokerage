@@ -2,6 +2,8 @@ import { useRef, useState, type ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import heroImage from '../../../assets/hero.jpg';
+import industrialPortImage from '../../../assets/industrial-port-container-yard.jpg';
 
 const FADE_UP_VARIANTS: Variants = {
   hidden: { opacity: 0, y: 10 },
@@ -39,7 +41,7 @@ const SERVICE_FEATURES: Feature[] = [
   {
     id: 'customs-clearance',
     title: 'Import and Export Customs Clearance',
-    imageUrl: '/assets/hero.jpg',
+    imageUrl: heroImage,
     imageAlt: 'Cargo truck and shipping containers at a port',
     href: 'services.html',
     items: ['FCL and LCL', 'Formal and Informal', 'Bulk and Break Bulk Cargo', 'Warehousing'],
@@ -47,7 +49,7 @@ const SERVICE_FEATURES: Feature[] = [
   {
     id: 'freight-forwarding',
     title: 'Freight Forwarding',
-    imageUrl: '/assets/industrial-port-container-yard.jpg',
+    imageUrl: industrialPortImage,
     imageAlt: 'Container stacks at an international port',
     href: 'services.html',
     items: ['Air and Sea Freight Forwarding', 'Domestic and International'],
