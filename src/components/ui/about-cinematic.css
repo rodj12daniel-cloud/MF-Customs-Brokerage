@@ -19,30 +19,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.about-cinematic__grain,
-.about-cinematic__grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.about-cinematic__grain {
-  z-index: 50;
-  opacity: .045;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.about-cinematic__grid {
-  z-index: 0;
-  opacity: .45;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, .05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, .05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 70%);
-}
-
 .about-cinematic__headlines,
 .about-cinematic__cta {
   position: absolute;
@@ -610,6 +586,7 @@ html[data-theme="light"] .about-cinematic__cta > p {
 
   .about-cinematic {
     min-height: 620px;
+    overflow-x: clip;
   }
 
   .about-cinematic__headlines,
@@ -624,21 +601,22 @@ html[data-theme="light"] .about-cinematic__cta > p {
 
   .about-cinematic__card {
     width: 92vw;
-    height: 92vh;
-    min-height: 570px;
+    height: min(92svh, 720px);
+    min-height: min(570px, 84svh);
     border-radius: 32px;
   }
 
   .about-cinematic__card-layout {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    gap: 0;
-    padding: 22px 17px;
+    justify-content: flex-start;
+    gap: clamp(14px, 2.5svh, 22px);
+    padding: 28px 16px calc(92px + env(safe-area-inset-bottom));
   }
 
   .about-cinematic__story {
     width: 100%;
+    flex: 0 0 auto;
     text-align: center;
   }
 
@@ -649,13 +627,13 @@ html[data-theme="light"] .about-cinematic__cta > p {
 
   .about-cinematic__story h3 {
     margin-bottom: 8px;
-    font-size: 25px;
+    font-size: clamp(21px, 6vw, 24px);
   }
 
   .about-cinematic__story > p:not(.about-cinematic__eyebrow) {
-    max-width: 400px;
+    max-width: 340px;
     margin-inline: auto;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
   }
 
@@ -665,14 +643,18 @@ html[data-theme="light"] .about-cinematic__cta > p {
   }
 
   .about-cinematic__phone-wrap {
-    height: 56%;
-    min-height: 340px;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex: 1 1 auto;
   }
 
   .about-cinematic__phone {
-    width: 220px;
-    height: min(420px, 51vh);
-    min-height: 350px;
+    height: min(345px, 44svh);
+    width: auto;
+    aspect-ratio: 14 / 29;
+    min-height: 0;
+    flex: 0 0 auto;
     border-radius: 38px;
   }
 
@@ -681,11 +663,11 @@ html[data-theme="light"] .about-cinematic__cta > p {
   }
 
   .about-cinematic__phone-content {
-    padding: 46px 14px 22px;
+    padding: 38px 12px 18px;
   }
 
   .about-cinematic__reference-header {
-    margin-bottom: 18px;
+    margin-bottom: 12px;
   }
 
   .about-cinematic__reference-header strong {
@@ -693,63 +675,37 @@ html[data-theme="light"] .about-cinematic__cta > p {
   }
 
   .about-cinematic__delivery-metric {
-    width: 136px;
-    height: 136px;
-    margin-bottom: 16px;
+    width: 108px;
+    height: 108px;
+    margin-bottom: 12px;
   }
 
   .about-cinematic__delivery-count {
-    font-size: 28px;
+    font-size: 25px;
   }
 
   .about-cinematic__phone-widgets {
-    gap: 9px;
+    gap: 7px;
   }
 
   .about-cinematic__summary-widget {
-    min-height: 48px;
-    gap: 9px;
-    padding: 7px;
+    min-height: 39px;
+    gap: 8px;
+    padding: 6px;
   }
 
   .about-cinematic__summary-icon {
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
   }
 
   .about-cinematic__phone-home {
-    bottom: 7px;
-    width: 90px;
+    bottom: 6px;
+    width: 72px;
   }
 
   .about-cinematic__badge {
-    gap: 8px;
-    padding: 9px 11px;
-    border-radius: 13px;
-  }
-
-  .about-cinematic__badge--top {
-    top: 5%;
-    left: 4%;
-  }
-
-  .about-cinematic__badge--bottom {
-    right: 4%;
-    bottom: 5%;
-  }
-
-  .about-cinematic__badge-icon {
-    width: 29px;
-    height: 29px;
-    font-size: 13px;
-  }
-
-  .about-cinematic__badge strong {
-    font-size: 9px;
-  }
-
-  .about-cinematic__badge small {
-    font-size: 8px;
+    display: none;
   }
 
   .about-cinematic__cta h2 {

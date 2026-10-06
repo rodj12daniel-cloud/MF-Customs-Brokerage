@@ -76,7 +76,7 @@ export default function AboutCinematic() {
       });
 
       timeline
-        .to(['.about-cinematic__headlines', '.about-cinematic__grid'], {
+        .to('.about-cinematic__headlines', {
           scale: 1.15,
           filter: 'blur(20px)',
           opacity: 0.2,
@@ -175,9 +175,6 @@ export default function AboutCinematic() {
       aria-label="About MF Customs Brokerage"
       style={{ perspective: '1500px' }}
     >
-      <div className="about-cinematic__grain" aria-hidden="true" />
-      <div className="about-cinematic__grid" aria-hidden="true" />
-
       <div className="about-cinematic__headlines">
         <h2 className="about-cinematic__headline-first">Customs, made clearer.</h2>
         <p className="about-cinematic__headline-second">Trade, made possible.</p>

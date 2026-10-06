@@ -353,8 +353,53 @@
     height: auto;
     filter: brightness(0) invert(1);
     opacity: var(--logo-scroll-opacity, 1);
-    transform: translate(-50%, calc(-50% - var(--logo-scroll-offset, 0px)));
+    transform: translate(-50%, calc(-50% - var(--logo-scroll-offset, 0px))) scale(var(--logo-scroll-scale, 1));
     will-change: opacity, transform;
+  }
+
+  .mobile-logo-scroll-cue {
+    position: absolute;
+    z-index: 1;
+    bottom: calc(28px + env(safe-area-inset-bottom));
+    left: 50%;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #f06b6b;
+    opacity: var(--logo-scroll-opacity, 1);
+    filter: drop-shadow(0 0 6px rgba(240, 107, 107, .75)) drop-shadow(0 0 18px rgba(198, 54, 54, .62));
+    animation: mobile-logo-scroll-cue 1.5s ease-in-out infinite;
+    transform: translateX(-50%);
+    transition: opacity .12s linear;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-logo-scroll-cue svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .mobile-logo-scroll-cue:focus-visible {
+    outline: 2px solid #f06b6b;
+    outline-offset: 4px;
+  }
+
+  @keyframes mobile-logo-scroll-cue {
+    0%, 100% {
+      transform: translate(-50%, 0);
+    }
+    50% { transform: translate(-50%, 8px); }
   }
 
   @keyframes mobile-logo-fade {
@@ -377,5 +422,11 @@
     visibility: hidden;
     pointer-events: none;
     transform: translateY(12px);
+  }
+}
+
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+  .mobile-logo-scroll-cue {
+    animation: none;
   }
 }

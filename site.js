@@ -66,8 +66,9 @@ if (mobileLogoIntro) {
     const trackTop = track.getBoundingClientRect().top;
     const scrollDistance = Math.max(track.offsetHeight - mobileLogoIntro.offsetHeight, 1);
     const progress = Math.max(0, Math.min(1, -trackTop / scrollDistance));
-    logo.style.setProperty('--logo-scroll-offset', `${progress * 48}px`);
-    logo.style.setProperty('--logo-scroll-opacity', String(1 - progress));
+    mobileLogoIntro.style.setProperty('--logo-scroll-offset', `${progress * 96}px`);
+    mobileLogoIntro.style.setProperty('--logo-scroll-scale', String(1 + progress * 0.06));
+    mobileLogoIntro.style.setProperty('--logo-scroll-opacity', String(1 - progress));
   };
 
   const scheduleLogoParallax = () => {
