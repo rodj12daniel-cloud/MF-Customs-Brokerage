@@ -1101,30 +1101,6 @@ html[data-theme="light"] .founder-quote-card__mark img {
   filter: none;
 }
 
-html[data-theme="light"] .page--services .brand__logo {
-  filter: brightness(0) invert(1);
-}
-
-html[data-theme="light"] .page--team .brand__logo {
-  filter: brightness(0) invert(1);
-}
-
-html[data-theme="light"] .page--services .brand__name {
-  color: #fff;
-}
-
-html[data-theme="light"] .page--team .brand__name {
-  color: #fff;
-}
-
-html[data-theme="light"] .page--team .brand__name span:last-child {
-  color: rgba(255,255,255,.78);
-}
-
-html[data-theme="light"] .page--services .brand__name span:last-child {
-  color: rgba(255,255,255,.78);
-}
-
 html[data-theme="light"] .brand__name span:last-child {
   color: rgba(37, 35, 38, .68);
 }
