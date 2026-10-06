@@ -1,0 +1,218 @@
+.home-services {
+  width: 100%;
+  padding: 64px 24px 80px;
+  color: var(--ink);
+}
+
+.home-services__content {
+  width: min(1152px, 100%);
+  margin-inline: auto;
+}
+
+.home-services__intro {
+  max-width: 768px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.home-services__intro h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.home-services__intro > p {
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.home-services__cta {
+  margin-top: 40px;
+}
+
+.home-services__button {
+  height: 44px;
+  min-height: 44px;
+  padding-inline: 18px;
+  border: 1px solid rgba(198, 54, 54, .5);
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.home-services__button:hover {
+  background: var(--accent-strong);
+}
+
+.home-services__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.home-services__more {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.home-services__more-button {
+  min-height: 48px;
+  padding-inline: 24px;
+}
+
+.home-services__card {
+  display: block;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+}
+
+.home-services__card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.home-services__card-shell {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .035);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.home-services__image-wrap {
+  display: block;
+  overflow: hidden;
+}
+
+.home-services__image-wrap img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+
+.home-services__card:hover .home-services__image-wrap img,
+.home-services__card:focus-visible .home-services__image-wrap img {
+  transform: scale(1.05);
+}
+
+.home-services__card-content {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+}
+
+.home-services__card-title {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.home-services__arrow {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  color: var(--muted);
+  transition: background .3s ease, color .3s ease, transform .3s ease;
+}
+
+.home-services__arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.home-services__card:hover .home-services__arrow,
+.home-services__card:focus-visible .home-services__arrow {
+  transform: translateX(3px);
+  background: rgba(198, 54, 54, .2);
+  color: var(--ink);
+}
+
+html[data-theme="light"] .home-services__card-shell {
+  border-color: rgba(37, 35, 38, .1);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(55, 35, 35, .08);
+}
+
+html[data-theme="light"] .home-services__arrow {
+  background: rgba(37, 35, 38, .06);
+  color: #505056;
+}
+
+@media (min-width: 640px) {
+  .home-services {
+    padding-block: 96px;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-services__intro h2 {
+    font-size: 48px;
+  }
+
+  .home-services__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 96px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-services {
+    padding-inline: 18px;
+  }
+
+  .home-services__intro h2 {
+    font-size: 30px;
+  }
+
+  .home-services__intro > p {
+    font-size: 16px;
+  }
+
+  .home-services__grid {
+    gap: 18px;
+  }
+
+  .home-services__card-content {
+    min-height: 76px;
+    padding: 16px;
+  }
+
+  .home-services__card-title {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-services__image-wrap img,
+  .home-services__arrow {
+    transition: none;
+  }
+}
