@@ -4,7 +4,6 @@ import Loader from '@/components/ui/carousel-loader';
 const transitionStorageKey = 'mf-page-transition';
 const transitionRoot = document.getElementById('page-transition-root');
 const isHomePath = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
-const skipInitialLoader = false;
 
 if (isHomePath && !window.location.hash) {
   window.history.scrollRestoration = 'manual';
@@ -20,7 +19,10 @@ if (transitionRoot) {
   } catch {
     document.documentElement.classList.remove('page-transition-pending');
   }
-  const shouldShowOnPageLoad = true;
+  const shouldShowOnPageLoad = performance.getEntriesByType('navigation')
+    .some((entry) => isHomePath
+      && entry instanceof PerformanceNavigationTiming
+      && (entry.type === 'navigate' || entry.type === 'reload'));
 
   let loaderRoot: ReturnType<typeof createRoot> | null = null;
 
@@ -44,11 +46,7 @@ if (transitionRoot) {
     }, 350);
   };
 
-  if (skipInitialLoader) {
-    transitionRoot.classList.remove('is-visible');
-    transitionRoot.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove('page-transition-pending');
-  } else if (isHomePath && (isTransitioning || shouldShowOnPageLoad)) {
+  if (isHomePath && (isTransitioning || shouldShowOnPageLoad)) {
     window.addEventListener(
       'mf-loader-complete',
       () => window.setTimeout(hideTransition, 2000),
