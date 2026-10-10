@@ -1,12 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Check, CircleDot } from 'lucide-react';
 import brandLogo from '../../../assets/mflogo-display.png';
-import cargoPort from '../../../assets/industrial-port-container-yard.jpg';
-import cargoTruck from '../../../assets/hero-marquee-city-truck.jpg';
-import containerShip from '../../../assets/hero-marquee-container-ship.jpg';
-import warehouseForklift from '../../../assets/hero-marquee-warehouse-forklift.jpg';
 import './about-cinematic.css';
 
 if (typeof window !== 'undefined') {
@@ -15,6 +11,7 @@ if (typeof window !== 'undefined') {
 
 export default function AboutCinematic() {
   const sectionRef = useRef<HTMLElement>(null);
+  const deliveredCountRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -22,6 +19,7 @@ export default function AboutCinematic() {
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) {
+      if (deliveredCountRef.current) deliveredCountRef.current.textContent = '365';
       return;
     }
 
@@ -43,8 +41,11 @@ export default function AboutCinematic() {
       gsap.set([
         '.about-cinematic__story',
         '.about-cinematic__brand',
-        '.about-cinematic__media',
+        '.about-cinematic__phone-wrap',
+        '.about-cinematic__badge',
+        '.about-cinematic__phone-widget',
       ], { autoAlpha: 0 });
+      gsap.set(deliveredCountRef.current, { innerText: 0 });
 
       gsap.timeline({ delay: 0.3 })
         .to('.about-cinematic__headline-first', {
@@ -94,10 +95,31 @@ export default function AboutCinematic() {
           ease: 'power3.inOut',
           duration: 1.5,
         })
-        .fromTo('.about-cinematic__media',
+        .fromTo('.about-cinematic__phone-wrap',
           { y: 300, z: -500, autoAlpha: 0, scale: 0.6 },
           { y: 0, z: 0, autoAlpha: 1, scale: 1, ease: 'expo.out', duration: 2.5 },
           '-=0.8',
+        )
+        .fromTo('.about-cinematic__phone-widget',
+          { y: 40, autoAlpha: 0, scale: 0.95 },
+          { y: 0, autoAlpha: 1, scale: 1, stagger: 0.15, ease: 'back.out(1.2)', duration: 1.5 },
+          '-=1.5',
+        )
+        .to('.about-cinematic__progress-ring', {
+          strokeDashoffset: 60,
+          duration: 2,
+          ease: 'power3.inOut',
+        }, '-=1.2')
+        .to(deliveredCountRef.current, {
+          innerText: 365,
+          snap: { innerText: 1 },
+          duration: 2,
+          ease: 'expo.out',
+        }, '<')
+        .fromTo('.about-cinematic__badge',
+          { y: 100, autoAlpha: 0, scale: 0.7, rotationZ: -10 },
+          { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, ease: 'back.out(1.5)', duration: 1.5, stagger: 0.2 },
+          '-=1.5',
         )
         .fromTo('.about-cinematic__story',
           { x: -50, autoAlpha: 0 },
@@ -113,7 +135,8 @@ export default function AboutCinematic() {
         .to('.about-cinematic__headlines', { autoAlpha: 0, duration: 0.1 })
         .to({}, { duration: 1 })
         .to([
-          '.about-cinematic__media',
+          '.about-cinematic__phone-wrap',
+          '.about-cinematic__badge',
           '.about-cinematic__story',
           '.about-cinematic__brand',
         ], {
@@ -163,29 +186,58 @@ export default function AboutCinematic() {
           <div className="about-cinematic__card-layout">
             <div className="about-cinematic__story">
               <p className="about-cinematic__eyebrow">Our story</p>
-              <h3>Built around clarity, compliance, and cargo that keeps moving.</h3>
-              <p>MF Customs Brokerage brings together licensed expertise, careful coordination, and a hands-on approach for importers and exporters moving goods across borders.</p>
-              <a href="contact.html" className="about-cinematic__story-link">Talk to our team <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} /></a>
+              <h3>Built on a shared ambition.</h3>
+              <p>Two licensed customs brokers brought their experience together to make customs and logistics clearer for every client.</p>
+              <a href="contact.html">Talk to our team <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} /></a>
             </div>
 
-            <div className="about-cinematic__media" aria-label="MF Customs Brokerage import and logistics imagery">
-              <div className="about-cinematic__media-slide is-active">
-                <img src={cargoPort} alt="Cargo containers in a port yard" />
-              </div>
-              <div className="about-cinematic__media-slide">
-                <img src={cargoTruck} alt="Cargo truck in transit" />
-              </div>
-              <div className="about-cinematic__media-slide">
-                <img src={containerShip} alt="Container ship in port" />
-              </div>
-              <div className="about-cinematic__media-slide">
-                <img src={warehouseForklift} alt="Warehouse forklift moving cargo" />
+            <div className="about-cinematic__phone-wrap" aria-label="Illustration of a shipment workflow">
+              <div className="about-cinematic__phone">
+                <div className="about-cinematic__phone-screen">
+                  <div className="about-cinematic__island"><span /></div>
+                  <div className="about-cinematic__phone-content">
+                    <div className="about-cinematic__phone-widget about-cinematic__reference-header">
+                      <span><small>Today</small><strong>Journey</strong></span>
+                      <span className="about-cinematic__avatar">JS</span>
+                    </div>
+
+                    <div className="about-cinematic__phone-widget about-cinematic__delivery-metric">
+                      <svg viewBox="0 0 176 176" aria-hidden="true">
+                        <circle cx="88" cy="88" r="64" className="about-cinematic__progress-track" />
+                        <circle cx="88" cy="88" r="64" className="about-cinematic__progress-ring" />
+                      </svg>
+                      <span ref={deliveredCountRef} className="about-cinematic__delivery-count">0</span>
+                      <span className="about-cinematic__delivery-label">Packages Delivered</span>
+                    </div>
+
+                    <div className="about-cinematic__phone-widgets">
+                      <div className="about-cinematic__phone-widget about-cinematic__summary-widget">
+                        <span className="about-cinematic__summary-icon about-cinematic__summary-icon--blue"><CircleDot size={16} strokeWidth={2} /></span>
+                        <span className="about-cinematic__summary-lines"><i /><i /></span>
+                      </div>
+                      <div className="about-cinematic__phone-widget about-cinematic__summary-widget">
+                        <span className="about-cinematic__summary-icon about-cinematic__summary-icon--green"><Check size={16} strokeWidth={2} /></span>
+                        <span className="about-cinematic__summary-lines"><i /><i /></span>
+                      </div>
+                    </div>
+                    <div className="about-cinematic__phone-home" aria-hidden="true" />
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="about-cinematic__brand" aria-hidden="true">
               <img src={brandLogo} alt="" />
             </div>
+          </div>
+
+          <div className="about-cinematic__badge about-cinematic__badge--top">
+            <span className="about-cinematic__badge-icon" aria-hidden="true">✓</span>
+            <span><strong>Licensed expertise</strong><small>Customs brokers you can trust</small></span>
+          </div>
+          <div className="about-cinematic__badge about-cinematic__badge--bottom">
+            <span className="about-cinematic__badge-icon" aria-hidden="true"><ArrowUpRight size={18} strokeWidth={2} /></span>
+            <span><strong>Clear coordination</strong><small>From arrival to release</small></span>
           </div>
         </article>
       </div>

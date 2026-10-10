@@ -295,8 +295,8 @@ button { color: inherit; font: inherit; }
 .service-gallery__details li::before { position: absolute; top: 50%; left: 15px; display: grid; width: 17px; height: 17px; place-items: center; border-radius: 50%; background: rgba(198,54,54,.18); color: #f06b6b; content: "+"; font-size: 13px; font-weight: 700; line-height: 1; transform: translateY(-50%); }
 .service-gallery__details .button { min-height: 50px; margin-top: 26px; padding-inline: 22px; box-shadow: 0 8px 22px rgba(158,31,36,.2); transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease; }
 .service-gallery__details .button:hover { box-shadow: 0 12px 26px rgba(158,31,36,.3); transform: translateY(-2px); }
-.service-gallery__close { position: absolute; top: 15px; right: 15px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; background: rgba(255,255,255,.06); color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
-.service-gallery__close:hover { border-color: rgba(198,54,54,.45); background: rgba(198,54,54,.14); transform: rotate(90deg); }
+.service-gallery__close { position: absolute; top: 15px; right: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 42px; height: 42px; padding: 0 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; background: rgba(255,255,255,.06); color: var(--ink); font-size: 15px; line-height: 1; cursor: pointer; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.service-gallery__close:hover { border-color: rgba(198,54,54,.45); background: rgba(198,54,54,.14); transform: translateY(-1px); }
 .service-gallery__close:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 @keyframes modern-dialog-in { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes modern-dialog-out { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(12px) scale(.98); } }
@@ -511,8 +511,33 @@ button { color: inherit; font: inherit; }
   .service-gallery__label { right: 12px; bottom: 13px; left: 12px; }
   .service-gallery__label strong { font-size: 11px; line-height: 1.25; }
   .service-gallery__dialog { max-height: 86vh; padding: 44px 18px 22px; }
+  .service-gallery__dialog > .service-gallery__close,
+  .service-gallery--services .service-gallery__dialog > .service-gallery__close {
+    position: absolute;
+    top: calc(env(safe-area-inset-top) + 16px);
+    right: 16px;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    min-width: 96px;
+    height: 46px;
+    padding: 0 14px;
+    border: 2px solid rgba(255,255,255,.95);
+    border-radius: 999px;
+    background: rgba(8,10,12,.8);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(0,0,0,.45);
+    backdrop-filter: none;
+  }
   .service-gallery--services .service-gallery__dialog:not([open]) { display: none; }
   .service-gallery--services .service-gallery__dialog[open] {
+    position: fixed;
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -522,7 +547,7 @@ button { color: inherit; font: inherit; }
     inset: 0;
     flex-direction: column;
     margin: 0;
-    padding: 0;
+    padding: calc(env(safe-area-inset-top) + 62px) 0 0;
     overflow: hidden;
     border: 0;
     border-radius: 0;
@@ -534,7 +559,7 @@ button { color: inherit; font: inherit; }
     flex: 0 0 min(39svh, 340px);
     min-height: 230px;
     overflow: hidden;
-    margin: 10px 10px 14px;
+    margin: 0 10px 14px;
     border: 1px solid rgba(255,255,255,.14);
     border-radius: 20px;
     background: #171719;
@@ -579,12 +604,15 @@ button { color: inherit; font: inherit; }
     top: calc(env(safe-area-inset-top) + 12px);
     right: 12px;
     z-index: 1;
-    width: 44px;
-    height: 44px;
+    width: auto;
+    min-width: 92px;
+    height: 42px;
+    padding: 0 14px;
     border: 2px solid rgba(255,255,255,.95);
+    border-radius: 999px;
     background: #111214;
     color: #fff;
-    font-size: 27px;
+    font-size: 15px;
     font-weight: 700;
     box-shadow: 0 3px 14px rgba(0,0,0,.55);
     backdrop-filter: none;
