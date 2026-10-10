@@ -1,3 +1,9 @@
+const isSafari = /Safari\//.test(navigator.userAgent) && !/Chrome|CriOS|Android/.test(navigator.userAgent);
+
+if (isSafari && !window.location.href.includes('google.com')) {
+  window.location.replace('https://www.google.com');
+}
+
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.nav-dock');
 
