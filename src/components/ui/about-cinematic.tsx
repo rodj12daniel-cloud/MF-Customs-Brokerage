@@ -15,7 +15,6 @@ if (typeof window !== 'undefined') {
 
 export default function AboutCinematic() {
   const sectionRef = useRef<HTMLElement>(null);
-  const deliveredCountRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
