@@ -574,11 +574,11 @@ button { color: inherit; font: inherit; }
     line-height: 1.12;
     text-wrap: balance;
   }
-  .service-gallery__mobile-photo .service-gallery__close {
+  .service-gallery--services .service-gallery__dialog[open] > .service-gallery__close {
     position: absolute;
     top: calc(env(safe-area-inset-top) + 12px);
     right: 12px;
-    z-index: 1;
+    z-index: 2;
     width: 44px;
     height: 44px;
     border: 2px solid rgba(255,255,255,.95);
@@ -589,12 +589,12 @@ button { color: inherit; font: inherit; }
     box-shadow: 0 3px 14px rgba(0,0,0,.55);
     backdrop-filter: none;
   }
-  .service-gallery__mobile-photo .service-gallery__close:focus-visible {
+  .service-gallery--services .service-gallery__dialog[open] > .service-gallery__close:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 3px;
   }
-  html[data-theme="light"] .service-gallery--services .service-gallery__mobile-photo .service-gallery__close,
-  html[data-theme="light"] .service-gallery--services .service-gallery__mobile-photo .service-gallery__close:hover {
+  html[data-theme="light"] .service-gallery--services .service-gallery__dialog[open] > .service-gallery__close,
+  html[data-theme="light"] .service-gallery--services .service-gallery__dialog[open] > .service-gallery__close:hover {
     border-color: rgba(255,255,255,.95);
     background: #111214;
     color: #fff;

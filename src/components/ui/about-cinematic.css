@@ -19,8 +19,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.about-cinematic__headlines,
-.about-cinematic__cta {
+.about-cinematic__headlines {
   position: absolute;
   z-index: 10;
   display: flex;
@@ -100,17 +99,41 @@
   position: relative;
   z-index: 10;
   display: grid;
-  width: min(1280px, 100%);
+  width: 100%;
   height: 100%;
-  grid-template-columns: 1fr 1.15fr 1fr;
+  grid-template-columns: minmax(230px, .8fr) minmax(0, 1.2fr);
   align-items: center;
-  gap: 28px;
-  padding: 32px clamp(26px, 5vw, 72px);
+  gap: clamp(24px, 5vw, 72px);
+  padding: 40px clamp(32px, 7vw, 104px);
+}
+
+.about-cinematic__left {
+  display: grid;
+  justify-items: start;
+  gap: 22px;
+  min-width: 0;
+}
+
+.about-cinematic__brand {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.about-cinematic__brand img {
+  display: block;
+  width: min(220px, 54vw);
+  height: clamp(82px, 18vh, 150px);
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1);
 }
 
 .about-cinematic__story {
   position: relative;
   z-index: 20;
+  width: 100%;
+  text-align: left;
 }
 
 .about-cinematic__eyebrow {
@@ -133,7 +156,7 @@
 }
 
 .about-cinematic__story > p:not(.about-cinematic__eyebrow) {
-  max-width: 390px;
+  max-width: 520px;
   margin: 0;
   color: rgba(229, 231, 235, .75);
   font-size: 14px;
@@ -158,358 +181,81 @@
   transform: translate(3px, -3px);
 }
 
-.about-cinematic__phone-wrap {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
-}
-
-.about-cinematic__phone {
-  position: relative;
-  width: 280px;
-  height: min(580px, 76vh);
-  min-height: 500px;
-  padding: 7px;
-  border: 2px solid #52525b;
-  border-radius: 48px;
-  background: #111;
-  box-shadow: inset 0 0 0 7px #000, 0 40px 80px -15px rgba(0, 0, 0, .9), 0 15px 25px -5px rgba(0, 0, 0, .7);
-  transform-style: preserve-3d;
-}
-
-.about-cinematic__phone-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 38px;
-  background: #050914;
-  color: #fff;
-}
-
-.about-cinematic__phone-screen::after {
-  position: absolute;
-  z-index: 30;
-  inset: 0;
-  background: linear-gradient(110deg, rgba(255, 255, 255, .08), transparent 45%);
-  content: "";
-  pointer-events: none;
-}
-
-.about-cinematic__island {
-  position: absolute;
-  z-index: 40;
-  top: 9px;
-  left: 50%;
-  display: flex;
-  width: 100px;
-  height: 28px;
-  align-items: center;
-  justify-content: flex-end;
-  padding-inline: 12px;
-  border-radius: 999px;
-  background: #000;
-  transform: translateX(-50%);
-}
-
-.about-cinematic__island span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 8px rgba(34, 197, 94, .8);
-}
-
-.about-cinematic__phone-content {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  padding: 52px 20px 24px;
-}
-
-.about-cinematic__phone-widget {
-  display: flex;
-  align-items: center;
-}
-
-.about-cinematic__reference-header {
-  justify-content: space-between;
-  margin-bottom: 28px;
-}
-
-.about-cinematic__reference-header > span:first-child {
-  display: grid;
-  gap: 5px;
-}
-
-.about-cinematic__phone small {
-  color: #9298a6;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.about-cinematic__reference-header small {
-  margin-bottom: 1px;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0;
-}
-
-.about-cinematic__reference-header strong {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -.4px;
-}
-
-.about-cinematic__avatar {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .05);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
-  color: #e4e4e7;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.about-cinematic__delivery-metric {
-  position: relative;
-  display: flex;
-  width: 176px;
-  height: 176px;
-  flex: 0 0 auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  margin-bottom: 28px;
-  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, .8));
-}
-
-.about-cinematic__delivery-metric svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.about-cinematic__progress-track,
-.about-cinematic__progress-ring {
-  fill: none;
-  stroke-width: 12;
-}
-
-.about-cinematic__progress-track {
-  stroke: rgba(255, 255, 255, .045);
-}
-
-.about-cinematic__progress-ring {
-  stroke: #3b82f6;
-  stroke-dasharray: 402;
-  stroke-dashoffset: 402;
-  stroke-linecap: round;
-}
-
-.about-cinematic__delivery-count {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  line-height: 1;
-}
-
-.about-cinematic__delivery-label {
-  position: relative;
-  z-index: 1;
-  margin-top: 5px;
-  color: rgba(191, 219, 254, .58);
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.about-cinematic__phone-widgets {
-  display: grid;
-  gap: 12px;
-}
-
-.about-cinematic__summary-widget {
-  min-height: 54px;
-  gap: 11px;
-  padding: 9px;
-  border: 1px solid rgba(255, 255, 255, .06);
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .01));
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .3), inset 0 1px 1px rgba(255, 255, 255, .05);
-}
-
-.about-cinematic__summary-icon {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid;
-  border-radius: 12px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .08);
-}
-
-.about-cinematic__summary-icon--blue {
-  border-color: rgba(59, 130, 246, .24);
-  background: linear-gradient(135deg, rgba(59, 130, 246, .2), rgba(59, 130, 246, .04));
-  color: #3b82f6;
-}
-
-.about-cinematic__summary-icon--green {
-  border-color: rgba(16, 185, 129, .24);
-  background: linear-gradient(135deg, rgba(16, 185, 129, .2), rgba(16, 185, 129, .04));
-  color: #10b981;
-}
-
-.about-cinematic__summary-lines {
-  display: grid;
-  flex: 1;
-  gap: 7px;
-}
-
-.about-cinematic__summary-lines i {
-  display: block;
-  height: 7px;
-  border-radius: 999px;
-  background: #d4d4d8;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .25);
-}
-
-.about-cinematic__summary-lines i:first-child {
-  width: 62%;
-}
-
-.about-cinematic__summary-lines i:last-child {
-  width: 38%;
-  height: 6px;
-  background: #52525b;
-}
-
-.about-cinematic__summary-widget:nth-child(2) .about-cinematic__summary-lines i:first-child {
-  width: 48%;
-}
-
-.about-cinematic__summary-widget:nth-child(2) .about-cinematic__summary-lines i:last-child {
-  width: 78%;
-}
-
-.about-cinematic__phone-home {
-  position: absolute;
-  bottom: 9px;
-  left: 50%;
-  width: 120px;
-  height: 4px;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, .2);
-  transform: translateX(-50%);
-}
-
-.about-cinematic__brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.about-cinematic__voxel-wrap {
+  min-width: 0;
   width: 100%;
 }
 
-.about-cinematic__brand img {
-  display: block;
-  width: min(100%, 260px);
-  height: min(48vh, 300px);
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+.about-cinematic .about-cinematic__voxel {
+  --color-background: transparent;
+  --color-foreground: #f4f1eb;
+  --color-muted-foreground: rgba(229, 231, 235, .75);
+  --color-card: rgba(18, 19, 21, .9);
+  --color-border: rgba(255, 255, 255, .2);
+  width: 100%;
+  padding-block: 0 !important;
+  background-color: transparent !important;
 }
 
-.about-cinematic__badge {
-  position: absolute;
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 14px 17px;
-  border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: 17px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .015));
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .8), inset 0 1px 1px rgba(255, 255, 255, .2);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
-
-.about-cinematic__badge--top {
-  top: 14%;
-  left: calc(50% - 255px);
-}
-
-.about-cinematic__badge--bottom {
-  right: calc(50% - 255px);
-  bottom: 14%;
-}
-
-.about-cinematic__badge-icon {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  border: 1px solid rgba(198, 54, 54, .28);
-  border-radius: 50%;
-  background: rgba(198, 54, 54, .12);
-  color: #f9c7c7;
-  font-size: 17px;
-  font-weight: 800;
-}
-
-.about-cinematic__badge > span:last-child {
-  display: grid;
-  gap: 4px;
-}
-
-.about-cinematic__badge strong {
-  color: #fff;
-  font-size: 12px;
-}
-
-.about-cinematic__badge small {
-  color: rgba(249, 199, 199, .68);
-  font-size: 10px;
-}
-
-.about-cinematic__cta h2 {
-  margin: 0 0 18px;
-  background: linear-gradient(180deg, #fff, #a1a1aa);
-  background-clip: text;
-  color: transparent;
-  font-size: clamp(38px, 6vw, 76px);
-  font-weight: 800;
+.about-cinematic__voxel h2 {
+  margin: 0;
+  color: #f4f1eb !important;
+  font-size: clamp(22px, 2.5vw, 36px) !important;
+  font-weight: 700;
   letter-spacing: -.055em;
-  line-height: 1;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
-.about-cinematic__cta > p {
-  max-width: 580px;
-  margin: 0 auto 34px;
-  color: rgba(244, 241, 235, .68);
-  font-size: 16px;
-  line-height: 1.75;
+.about-cinematic__voxel h2 span {
+  background: linear-gradient(100deg, #f06b6b 0%, #c63636 55%, #f0a2a2 100%);
+  background-clip: text;
+  color: transparent !important;
+  -webkit-background-clip: text;
+}
+
+.about-cinematic__voxel > .relative.z-10 {
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
+}
+
+.about-cinematic__voxel .mt-4 {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.about-cinematic__voxel .mt-10 {
+  margin-top: 22px;
+}
+
+.about-cinematic__voxel .max-w-2xl {
+  max-width: 100%;
+}
+
+.about-cinematic__voxel .border-border\/70 {
+  border-color: rgba(255, 255, 255, .2);
+}
+
+html[data-theme="light"] .about-cinematic__voxel h2 {
+  color: #f4f1eb !important;
+}
+
+html[data-theme="light"] .about-cinematic__voxel h2 span {
+  background-image: linear-gradient(100deg, #b92730 0%, #9e1f24 100%);
+}
+
+.about-image-carousel__image {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.about-image-carousel__image.is-active {
+  opacity: 1;
+}
+
+.about-cinematic__voxel .bg-emerald-400 {
+  background-color: #f06b6b;
 }
 
 html[data-theme="light"] .about-cinematic__headlines h2 {
@@ -517,66 +263,9 @@ html[data-theme="light"] .about-cinematic__headlines h2 {
   text-shadow: none;
 }
 
-html[data-theme="light"] .about-cinematic__headline-second,
-html[data-theme="light"] .about-cinematic__cta h2 {
+html[data-theme="light"] .about-cinematic__headline-second {
   background-image: linear-gradient(180deg, #c63636 0%, #8e2025 100%);
   filter: none;
-}
-
-html[data-theme="light"] .about-cinematic__cta > p {
-  color: #555258;
-}
-
-.about-cinematic__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-}
-
-.about-cinematic__button {
-  display: inline-flex;
-  min-width: 152px;
-  min-height: 58px;
-  align-items: center;
-  justify-content: center;
-  padding: 0 22px;
-  border: 1px solid transparent;
-  border-radius: 18px;
-  font-size: 12px;
-  font-weight: 800;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.about-cinematic__button:hover {
-  transform: translateY(-3px);
-}
-
-.about-cinematic__button--light {
-  border-color: rgba(255, 255, 255, .85);
-  background: linear-gradient(180deg, #fff, #f1f5f9);
-  color: #111827;
-  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .45), inset 0 1px 1px #fff;
-}
-
-.about-cinematic__button--dark {
-  border-color: rgba(255, 255, 255, .2);
-  background: linear-gradient(180deg, #242426, #171719);
-  color: #fff;
-  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .65), inset 0 1px 1px rgba(255, 255, 255, .12);
-}
-
-@media (max-width: 900px) {
-  .about-cinematic__card-layout {
-    grid-template-columns: .9fr 1.1fr;
-    gap: 12px;
-    padding-inline: 32px;
-  }
-
-  .about-cinematic__brand {
-    display: none;
-  }
-
 }
 
 @media (max-width: 680px) {
@@ -589,8 +278,7 @@ html[data-theme="light"] .about-cinematic__cta > p {
     overflow-x: clip;
   }
 
-  .about-cinematic__headlines,
-  .about-cinematic__cta {
+  .about-cinematic__headlines {
     padding-inline: 19px;
   }
 
@@ -607,148 +295,93 @@ html[data-theme="light"] .about-cinematic__cta > p {
   }
 
   .about-cinematic__card-layout {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: clamp(14px, 2.5svh, 22px);
-    padding: 28px 16px calc(92px + env(safe-area-inset-bottom));
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 26px;
+    padding: 38px 20px 86px;
   }
 
-  .about-cinematic__story {
+  .about-cinematic__brand img {
+    width: min(100px, 29vw);
+    height: 54px;
+  }
+
+  .about-cinematic__left {
+    gap: 20px;
+    justify-items: center;
     width: 100%;
-    flex: 0 0 auto;
     text-align: center;
   }
 
+  .about-cinematic__brand {
+    justify-content: center;
+  }
+
+  .about-cinematic__story {
+    text-align: center;
+  }
+
+  .about-cinematic__story > p:not(.about-cinematic__eyebrow) {
+    margin-inline: auto;
+  }
+
+  .about-cinematic__story > a {
+    justify-content: center;
+  }
+
   .about-cinematic__eyebrow {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     font-size: 9px;
   }
 
   .about-cinematic__story h3 {
-    margin-bottom: 8px;
-    font-size: clamp(21px, 6vw, 24px);
+    margin-bottom: 12px;
+    font-size: clamp(19px, 5.5vw, 23px);
   }
 
   .about-cinematic__story > p:not(.about-cinematic__eyebrow) {
-    max-width: 340px;
-    margin-inline: auto;
-    font-size: 12px;
-    line-height: 1.5;
+    max-width: 300px;
+    font-size: 10px;
+    line-height: 1.6;
   }
 
   .about-cinematic__story > a {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 11px;
   }
 
-  .about-cinematic__phone-wrap {
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    flex: 1 1 auto;
-  }
-
-  .about-cinematic__phone {
-    height: min(345px, 44svh);
-    width: auto;
-    aspect-ratio: 14 / 29;
-    min-height: 0;
-    flex: 0 0 auto;
-    border-radius: 38px;
-  }
-
-  .about-cinematic__phone-screen {
-    border-radius: 30px;
-  }
-
-  .about-cinematic__phone-content {
-    padding: 38px 12px 18px;
-  }
-
-  .about-cinematic__reference-header {
-    margin-bottom: 12px;
-  }
-
-  .about-cinematic__reference-header strong {
-    font-size: 14px;
-  }
-
-  .about-cinematic__delivery-metric {
-    width: 108px;
-    height: 108px;
-    margin-bottom: 12px;
-  }
-
-  .about-cinematic__delivery-count {
-    font-size: 25px;
-  }
-
-  .about-cinematic__phone-widgets {
-    gap: 7px;
-  }
-
-  .about-cinematic__summary-widget {
-    min-height: 39px;
-    gap: 8px;
-    padding: 6px;
-  }
-
-  .about-cinematic__summary-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .about-cinematic__phone-home {
-    bottom: 6px;
-    width: 72px;
-  }
-
-  .about-cinematic__badge {
+  .about-cinematic__voxel h2 {
     display: none;
   }
 
-  .about-cinematic__cta h2 {
-    margin-bottom: 14px;
-    font-size: 39px;
+  .about-cinematic .about-cinematic__voxel .mt-4 {
+    margin-top: 8px;
+    font-size: 9px;
   }
 
-  .about-cinematic__cta > p {
-    margin-bottom: 24px;
-    font-size: 13px;
+  .about-cinematic .about-cinematic__voxel .mt-10 {
+    margin-top: 16px;
   }
 
-  .about-cinematic__actions {
-    width: min(330px, 100%);
-    flex-direction: column;
-    gap: 11px;
-  }
-
-  .about-cinematic__button {
-    width: 100%;
-    min-height: 52px;
-    border-radius: 16px;
+  .about-cinematic__voxel .rounded-3xl {
+    border-radius: 18px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .about-image-carousel__image {
+    transition: none;
+  }
+
   .about-cinematic__card,
   .about-cinematic__headline-first,
   .about-cinematic__headline-second,
   .about-cinematic__story,
   .about-cinematic__brand,
-  .about-cinematic__phone-wrap,
-  .about-cinematic__badge,
-  .about-cinematic__phone-widget,
-  .about-cinematic__progress-ring,
-  .about-cinematic__cta {
-  opacity: 1 !important;
-  filter: none !important;
-  transform: none !important;
-  clip-path: none !important;
-  }
-
-  .about-cinematic__progress-ring {
-  stroke-dashoffset: 60 !important;
+  .about-cinematic__voxel-wrap {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    clip-path: none !important;
   }
 }
