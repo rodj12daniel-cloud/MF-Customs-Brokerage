@@ -177,18 +177,6 @@ const createAnimatedDialogControls = (dialog) => {
   };
 };
 
-document.querySelectorAll('[data-profile-open]').forEach((button) => {
-  const dialog = document.getElementById(button.dataset.profileOpen);
-  if (!dialog) return;
-  const controls = createAnimatedDialogControls(dialog);
-
-  button.addEventListener('click', controls.open);
-  dialog.querySelector('[data-profile-close]')?.addEventListener('click', controls.close);
-  dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) controls.close();
-  });
-});
-
 const contactForm = document.querySelector('[data-contact-form]');
 
 contactForm?.addEventListener('submit', (event) => {

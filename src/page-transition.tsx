@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import Loader from '@/components/ui/carousel-loader';
 
-const transitionStorageKey = 'mf-page-transition';
 const transitionRoot = document.getElementById('page-transition-root');
 const isHomePath = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
 
@@ -11,20 +10,33 @@ if (isHomePath && !window.location.hash) {
 }
 
 if (transitionRoot) {
-  let isTransitioning = false;
-
-  try {
-    isTransitioning = sessionStorage.getItem(transitionStorageKey) === 'active';
-    sessionStorage.removeItem(transitionStorageKey);
-  } catch {
-    document.documentElement.classList.remove('page-transition-pending');
-  }
-  const shouldShowOnPageLoad = performance.getEntriesByType('navigation')
-    .some((entry) => isHomePath
-      && entry instanceof PerformanceNavigationTiming
-      && (entry.type === 'navigate' || entry.type === 'reload'));
+  const shouldShowPreloader = isHomePath
+    && document.documentElement.classList.contains('page-transition-pending');
 
   let loaderRoot: ReturnType<typeof createRoot> | null = null;
+
+  const markInternalNavigation = (event: MouseEvent) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (!(event.target instanceof Element)) return;
+
+    const link = event.target.closest<HTMLAnchorElement>('a[href]');
+    if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+
+    const target = new URL(link.href, window.location.href);
+    const isHomeDestination = target.pathname === '/' || target.pathname.endsWith('/index.html');
+    const isHomeSection = !target.hash || target.hash === '#home' || target.hash === '#about-story';
+    if (
+      target.origin !== window.location.origin
+      || target.pathname === window.location.pathname
+      || !isHomeDestination
+      || !isHomeSection
+    ) return;
+
+    window.sessionStorage.setItem('mf-internal-transition', String(Date.now()));
+    document.documentElement.classList.add('page-transition-internal-pending');
+  };
+
+  document.addEventListener('click', markInternalNavigation, true);
 
   const showTransition = () => {
     if (!loaderRoot) {
@@ -46,10 +58,10 @@ if (transitionRoot) {
     }, 350);
   };
 
-  if (isHomePath && (isTransitioning || shouldShowOnPageLoad)) {
+  if (shouldShowPreloader) {
     window.addEventListener(
       'mf-loader-complete',
-      () => window.setTimeout(hideTransition, 2000),
+      hideTransition,
       { once: true },
     );
     showTransition();
@@ -57,38 +69,17 @@ if (transitionRoot) {
     document.documentElement.classList.remove('page-transition-pending');
   }
 
-  document.addEventListener('click', (event) => {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    if (!(event.target instanceof Element)) return;
+  if (!shouldShowPreloader && document.documentElement.classList.contains('page-transition-internal-pending')) {
+    const startedAt = Number(document.documentElement.dataset.internalTransitionStarted);
+    const remainingDuration = Math.max(0, 2320 - (Date.now() - startedAt));
+    const hideInternalTransition = () => {
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('page-transition-internal-pending');
+      }, remainingDuration);
+    };
 
-    const link = event.target.closest<HTMLAnchorElement>('a[href]');
-    if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
-    const destination = new URL(link.href, window.location.href);
-    if (destination.origin !== window.location.origin) return;
-    const isHomeDestination = destination.pathname === '/' || destination.pathname.endsWith('/index.html');
-    const isCurrentHomeLink = link.matches('.nav a[aria-current="page"], .mobile-dock a[aria-current="page"]')
-      && destination.pathname.endsWith('/index.html')
-      && !destination.hash;
+    if (document.readyState === 'complete') hideInternalTransition();
+    else window.addEventListener('load', hideInternalTransition, { once: true });
+  }
 
-    if (destination.pathname === window.location.pathname && destination.search === window.location.search) {
-      if (isCurrentHomeLink) {
-        event.preventDefault();
-        window.history.replaceState(window.history.state, '', destination.href);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      return;
-    }
-
-    if (!isHomeDestination) return;
-
-    event.preventDefault();
-    try {
-      sessionStorage.setItem(transitionStorageKey, 'active');
-      document.documentElement.classList.add('page-transition-pending');
-    } catch {
-      // The current page overlay still covers navigation when session storage is unavailable.
-    }
-    showTransition();
-    window.setTimeout(() => window.location.assign(destination.href), 220);
-  }, true);
 }

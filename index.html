@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fbfaf9">
-  <script>try { const theme = localStorage.getItem('mf-color-theme'); document.documentElement.dataset.theme = theme === 'dark' ? 'dark' : 'light'; document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0b0b0d' : '#fbfaf9'; } catch { document.documentElement.dataset.theme = 'light'; }</script>
+  <script>document.documentElement.dataset.theme = 'light';</script>
   <meta name="description" content="MF Customs Brokerage provides customs clearance, freight forwarding, customs and tariff consultancy, and related services.">
   <title>MF Customs Brokerage | Trade, made clearer</title>
   <meta name="google-site-verification" content="2rCURNbFONwNoJnyKvc8CTpJVyOojPc_fH98UIHKq3w">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   <script>document.documentElement.classList.add('js');</script>
-  <script>if (!location.hash || location.hash === '#home') { history.scrollRestoration = 'manual'; window.addEventListener('pageshow', () => { if (!location.hash || location.hash === '#home') window.scrollTo(0, 0); }, { once: true }); }</script>
+  <script>if (!location.hash || location.hash === '#home' || location.hash === '#about-story') { history.scrollRestoration = 'manual'; window.addEventListener('pageshow', () => { if (!location.hash || location.hash === '#home') window.scrollTo(0, 0); }, { once: true }); }</script>
   <style>
     :root {
       color-scheme: dark;
@@ -126,7 +126,7 @@
     a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 
     @media (max-width: 1020px) {
-      .header { grid-template-columns: 1fr auto; }
+      .header { display: none !important; }
       .nav { position: absolute; top: calc(100% + 10px); right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 9px 20px; border: 1px solid rgba(255, 255, 255, .15); border-radius: 20px; background: rgba(10, 15, 16, .93); backdrop-filter: blur(18px); }
       .nav.is-open { display: flex; }
       .nav a { padding: 13px 3px; border-bottom: 1px solid rgba(255, 255, 255, .09); }
@@ -192,22 +192,22 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=82">
+  <link rel="stylesheet" href="site.css?v=91">
   <link rel="stylesheet" href="chatbot.css?v=4">
-  <script>const navigationEntry = performance.getEntriesByType('navigation')[0]; if ((location.pathname === '/' || location.pathname.endsWith('/index.html')) && navigationEntry && (navigationEntry.type === 'navigate' || navigationEntry.type === 'reload')) document.documentElement.classList.add('page-transition-pending'); try { if (sessionStorage.getItem('mf-page-transition') === 'active') document.documentElement.classList.add('page-transition-pending'); } catch {}</script>
+  <script>try { const key = 'mf-site-preloader-seen'; const isHome = location.pathname === '/' || location.pathname.endsWith('/index.html'); if (isHome && sessionStorage.getItem(key) !== 'true') document.documentElement.classList.add('page-transition-pending'); sessionStorage.setItem(key, 'true'); sessionStorage.removeItem('mf-page-transition'); const navKey = 'mf-internal-transition'; const started = Number(sessionStorage.getItem(navKey)); if (started && Date.now() - started < 2320) { document.documentElement.classList.add('page-transition-internal-pending'); document.documentElement.dataset.internalTransitionStarted = String(started); } sessionStorage.removeItem(navKey); } catch {}</script>
 </head>
 <body id="page-top" class="home">
   <div id="page-transition-root" class="page-transition-root" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <a class="brand" href="#home" aria-label="MF Customs Brokerage home">
-    <img class="brand__logo" src="assets/mflogo-display.png" alt="">
-    <span class="brand__name"><span>MF CUSTOMS</span><span>BROKERAGE</span></span>
-  </a>
   <header class="header">
+    <a class="brand" href="#home" aria-label="MF Customs Brokerage home">
+      <img class="brand__logo" src="assets/mflogo-display.png" alt="">
+      <span class="brand__name"><span>MF CUSTOMS</span><span>BROKERAGE</span></span>
+    </a>
     <div class="nav-dock" id="primary-navigation">
       <nav class="nav" aria-label="Main navigation">
         <a href="#home" aria-current="page">Home</a>
-        <a href="#about">About</a>
+        <a href="#about-story">About</a>
         <a href="services.html">Services</a>
         <a href="team.html">Our Team</a>
         <a href="contact.html">Contact</a>
@@ -325,7 +325,7 @@
 
   <nav class="mobile-dock" aria-label="Mobile navigation">
     <a href="#page-top" aria-current="page"><img class="mobile-dock__icon" src="assets/hugeicons/home-01.svg" alt=""><span>Home</span></a>
-    <a href="#about"><img class="mobile-dock__icon" src="assets/hugeicons/information-circle.svg" alt=""><span>About</span></a>
+    <a href="#about-story"><img class="mobile-dock__icon" src="assets/hugeicons/information-circle.svg" alt=""><span>About</span></a>
     <a href="services.html"><img class="mobile-dock__icon" src="assets/hugeicons/globe-02.svg" alt=""><span>Services</span></a>
     <a href="team.html"><img class="mobile-dock__icon" src="assets/hugeicons/user-group.svg" alt=""><span>Our Team</span></a>
     <a href="contact.html"><img class="mobile-dock__icon" src="assets/hugeicons/mail-01.svg" alt=""><span>Contact</span></a>

@@ -3,16 +3,13 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 import { VoxelVideoStreakCard } from './voxel-video-streak-card';
-import brandLogo from '../../../assets/mflogo-display.png';
+import truckImage from '../../../assets/mf truck.png';
 import rubberImage from '../../../assets/rubber.jpg';
 import steelImage from '../../../assets/steel.jpg';
 import './about-cinematic.css';
 
 const aboutCardImages = [
-  {
-    src: 'https://www.sinotruk-howo.com/wp-content/uploads/2025/07/sinotruk-howo-NX-6x4-cargo-truck-1.webp',
-    alt: 'SINOTRUK HOWO NX 6x4 cargo truck',
-  },
+  { src: truckImage, alt: 'MF Customs Brokerage truck' },
   { src: rubberImage, alt: 'Rubber cargo' },
   { src: steelImage, alt: 'Steel cargo' },
 ];
@@ -29,7 +26,49 @@ export default function AboutCinematic() {
     if (!section) return;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion) return;
+    const isAboutNavigation = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) return false;
+
+      const link = event.target.closest<HTMLAnchorElement>('a[href]');
+      if (!link) return false;
+
+      const target = new URL(link.href, window.location.href);
+      return target.origin === window.location.origin
+        && target.pathname === window.location.pathname
+        && target.hash === '#about-story';
+    };
+
+    if (reducedMotion) {
+      const scrollToAboutSection = () => {
+        if (window.location.hash === '#about-story') {
+          section.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+      };
+      const handleAboutNavigation = (event: MouseEvent) => {
+        if (!isAboutNavigation(event)) return;
+
+        event.preventDefault();
+        if (window.location.hash !== '#about-story') {
+          window.history.pushState(null, '', '#about-story');
+        }
+        window.requestAnimationFrame(scrollToAboutSection);
+      };
+
+      document.addEventListener('click', handleAboutNavigation);
+      window.addEventListener('hashchange', scrollToAboutSection);
+      window.addEventListener('popstate', scrollToAboutSection);
+      if (window.location.hash === '#about-story') {
+        window.requestAnimationFrame(scrollToAboutSection);
+      }
+
+      return () => {
+        document.removeEventListener('click', handleAboutNavigation);
+        window.removeEventListener('hashchange', scrollToAboutSection);
+        window.removeEventListener('popstate', scrollToAboutSection);
+      };
+    }
+
+    let removeAboutHashChange = () => {};
 
     const context = gsap.context(() => {
       gsap.set('.about-cinematic__headline-first', {
@@ -48,7 +87,6 @@ export default function AboutCinematic() {
       });
       gsap.set([
         '.about-cinematic__story',
-        '.about-cinematic__brand',
         '.about-cinematic__voxel-wrap',
       ], { autoAlpha: 0 });
 
@@ -105,11 +143,6 @@ export default function AboutCinematic() {
           { x: 0, autoAlpha: 1, ease: 'power4.out', duration: 1.5 },
           '-=1.5',
         )
-        .fromTo('.about-cinematic__brand',
-          { x: 50, autoAlpha: 0, scale: 0.8 },
-          { x: 0, autoAlpha: 1, scale: 1, ease: 'expo.out', duration: 1.5 },
-          '<',
-        )
         .fromTo('.about-cinematic__voxel-wrap',
           { x: 50, autoAlpha: 0, scale: 0.96 },
           { x: 0, autoAlpha: 1, scale: 1, ease: 'expo.out', duration: 1.5 },
@@ -120,7 +153,6 @@ export default function AboutCinematic() {
         .to({}, { duration: 1 })
         .to([
           '.about-cinematic__story',
-          '.about-cinematic__brand',
           '.about-cinematic__voxel-wrap',
         ], {
           scale: 0.9,
@@ -143,9 +175,60 @@ export default function AboutCinematic() {
           ease: 'power3.in',
           duration: 1.5,
         });
+
+      const scrollToAboutStory = () => {
+        if (window.location.hash !== '#about-story' || !timeline.scrollTrigger) return;
+
+        ScrollTrigger.refresh();
+        const trigger = timeline.scrollTrigger;
+        const targetScroll = trigger.start + (trigger.end - trigger.start) * 0.4;
+        const root = document.documentElement;
+        const previousScrollBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, targetScroll);
+        root.style.scrollBehavior = previousScrollBehavior;
+      };
+
+      const handleAboutHashChange = () => {
+        window.requestAnimationFrame(scrollToAboutStory);
+      };
+
+      const handleAboutStoryNavigation = (event: MouseEvent) => {
+        if (!isAboutNavigation(event)) return;
+
+        event.preventDefault();
+        if (window.location.hash !== '#about-story') {
+          window.history.pushState(null, '', '#about-story');
+        }
+        window.requestAnimationFrame(scrollToAboutStory);
+      };
+
+      window.addEventListener('hashchange', handleAboutHashChange);
+      window.addEventListener('popstate', handleAboutHashChange);
+      document.addEventListener('click', handleAboutStoryNavigation);
+      removeAboutHashChange = () => {
+        window.removeEventListener('hashchange', handleAboutHashChange);
+        window.removeEventListener('popstate', handleAboutHashChange);
+        document.removeEventListener('click', handleAboutStoryNavigation);
+      };
+
+      if (window.location.hash === '#about-story') {
+        const jumpAfterLayout = () => {
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              ScrollTrigger.refresh();
+              scrollToAboutStory();
+            });
+          });
+        };
+
+        if (document.readyState === 'complete') jumpAfterLayout();
+        else window.addEventListener('load', jumpAfterLayout, { once: true });
+      }
     }, section);
 
     return () => {
+      removeAboutHashChange();
       context.revert();
     };
   }, []);
@@ -168,14 +251,11 @@ export default function AboutCinematic() {
           <div className="about-cinematic__sheen" aria-hidden="true" />
           <div className="about-cinematic__card-layout">
             <div className="about-cinematic__left">
-              <div className="about-cinematic__brand" aria-hidden="true">
-                <img src={brandLogo} alt="" />
-              </div>
-
               <div className="about-cinematic__story">
-                <p className="about-cinematic__eyebrow">Our story</p>
-                <h3>Your cargo, in capable hands.</h3>
-                <p>Two licensed customs brokers brought their experience together to make customs and logistics clearer for every client.</p>
+                <p className="about-cinematic__eyebrow">About</p>
+                <p>MF Customs Brokerage is a duly registered company with the Department of Trade and Industry (DTI) and accredited by the Bureau of Customs (BOC). Founded by two young professionals who share a common vision and passion for the customs brokerage industry, the company is committed to delivering reliable, efficient, and professional trade solutions.</p>
+                <p>We provide comprehensive services in customs brokerage, tariff consultancy, freight forwarding, warehousing, logistics, and trade consultancy. Through innovative approaches, modern solutions, and the expertise of our knowledgeable and experienced team, we strive to simplify trade processes and meet the diverse needs of our clients.</p>
+                <p>As a trusted intermediary, we represent and assist clients in navigating domestic and international trade requirements, coordinating with the Bureau of Customs and other relevant government agencies to facilitate smooth and compliant transactions.</p>
                 <a href="contact.html">Talk to our team <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} /></a>
               </div>
             </div>
