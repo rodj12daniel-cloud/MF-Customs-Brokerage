@@ -37,7 +37,7 @@
     </section>
     <section class="contact-request">
       <div class="contact-request__inner">
-        <form class="contact-form reveal" data-contact-form data-recipient="rodj12daniel@gmail.com" action="mailto:rodj12daniel@gmail.com" method="post" enctype="text/plain">
+        <form class="contact-form reveal" data-contact-form action="/api/contact" method="post">
           <h2>Send an inquiry</h2>
           <div class="contact-form__fields">
             <div class="contact-form__field">
@@ -73,6 +73,7 @@
             </div>
           </div>
           <button class="contact-form__submit home-hero__button home-hero__button--secondary" type="submit">Send message</button>
+          <p class="contact-form__status" data-contact-status role="status" aria-live="polite" hidden></p>
         </form>
         <figure class="contact-request__image" aria-label="Customs and freight operations">
           <img class="is-active" data-contact-slide src="assets/industrial-port-container-yard.jpg" alt="Cargo containers at an industrial port">

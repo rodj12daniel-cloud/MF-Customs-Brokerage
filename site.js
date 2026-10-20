@@ -179,21 +179,47 @@ const createAnimatedDialogControls = (dialog) => {
 
 const contactForm = document.querySelector('[data-contact-form]');
 
-contactForm?.addEventListener('submit', (event) => {
+contactForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const formData = new FormData(contactForm);
-  const selectedServices = formData.getAll('services');
-  const message = [
-    `Name: ${formData.get('name')}`,
-    `Email: ${formData.get('email')}`,
-    `Phone: ${formData.get('phone')}`,
-    `Services: ${selectedServices.length ? selectedServices.join(', ') : 'Not specified'}`,
-    '',
-    'Message:',
-    formData.get('message'),
-  ].join('\n');
-  const subject = 'Website inquiry - MF Customs Brokerage';
-  window.location.href = `mailto:${contactForm.dataset.recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const status = contactForm.querySelector('[data-contact-status]');
+
+  if (!(submitButton instanceof HTMLButtonElement) || !(status instanceof HTMLElement)) {
+    console.error('Contact form is missing its submit button or status element.');
+    return;
+  }
+
+  const originalButtonText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Sending...';
+  status.hidden = false;
+  status.textContent = 'Sending your inquiry...';
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+    });
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || `Request failed (${response.status}).`);
+    }
+
+    contactForm.reset();
+    status.textContent = 'Your inquiry was sent. We will be in touch soon.';
+  } catch (error) {
+    console.error('Contact form submission failed:', error);
+    status.textContent = 'We could not send your inquiry. Please try again or email ';
+    const emailLink = document.createElement('a');
+    emailLink.href = 'mailto:Import.mfcustomsbrokerage@gmail.com';
+    emailLink.textContent = 'Import.mfcustomsbrokerage@gmail.com';
+    status.append(emailLink, '.');
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
+  }
 });
 
 const contactSlides = [...document.querySelectorAll('[data-contact-slide]')];
