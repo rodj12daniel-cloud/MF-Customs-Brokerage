@@ -172,6 +172,34 @@ html[data-theme="light"] .home-services__arrow {
   }
 }
 
+@media (max-width: 767px) {
+  .home-services__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .home-services__card-content {
+    min-height: 80px;
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  .home-services__card-title {
+    font-size: 13px;
+  }
+
+  .home-services__arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .home-services__arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 @media (min-width: 768px) {
   .home-services__intro h2 {
     font-size: 48px;
@@ -197,16 +225,20 @@ html[data-theme="light"] .home-services__arrow {
   }
 
   .home-services__grid {
-    gap: 18px;
+    gap: 8px;
   }
 
   .home-services__card-content {
     min-height: 76px;
-    padding: 16px;
+    padding: 8px;
   }
 
   .home-services__card-title {
-    font-size: 16px;
+    font-size: 12px;
+  }
+
+  .home-services__arrow {
+    display: none;
   }
 }
 

@@ -690,14 +690,14 @@ button { color: inherit; font: inherit; }
   .about-detail h3 { margin: 11px 0 6px; font-size: 17px; }
   .about-detail p { font-size: 12px; line-height: 1.55; }
   .about-detail__label { font-size: 9px; }
-  .trade-organizations { grid-template-columns: 1fr; gap: 14px; margin-top: 30px; padding-top: 20px; }
+  .trade-organizations { grid-template-columns: 1fr; gap: 14px; margin-top: 30px; padding: 20px 16px 0; }
   .trade-organizations__heading h3 { font-size: 24px; }
   .trade-organizations__logos { gap: 6px; }
   .trade-logo { min-height: 90px; gap: 5px; padding: 7px 4px; }
   .trade-logo img { height: 45px; }
   .trade-logo figcaption { font-size: 7px; }
   .service-map { width: calc(100% + 32px); margin: 32px 0 0 -16px; padding-bottom: 12px; }
-  .service-map__heading { gap: 8px; margin-bottom: 14px; padding-inline: 16px; }
+  .service-map__heading { gap: 8px; margin-bottom: 14px; padding-inline: 32px; }
   .service-map__heading h2 { font-size: 22px; }
   .service-map__heading > p { font-size: 11px; }
   .service-map__canvas { height: 260px; }
@@ -1027,9 +1027,10 @@ button { color: inherit; font: inherit; }
     box-shadow: 0 10px 24px rgba(55,35,35,.1);
   }
   .service-map { margin-top: 40px; padding-bottom: 16px; }
-  .service-map__heading { align-items: flex-start; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .service-map__heading { align-items: center; flex-direction: column; gap: 8px; margin-bottom: 16px; text-align: center; }
   .service-map__heading h2 { font-size: 27px; }
   .service-map__heading > p { font-size: 14px; line-height: 1.55; }
+  .trade-organizations__heading { text-align: center; }
   .service-map__canvas { height: 230px; }
 }
 

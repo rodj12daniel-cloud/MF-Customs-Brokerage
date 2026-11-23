@@ -25,7 +25,24 @@ export default function AboutCinematic() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scrollToMobileAboutStory = () => {
+      if (window.matchMedia('(max-width: 680px)').matches && window.location.hash === '#about-story') {
+        section.querySelector('#about-story')?.scrollIntoView({ block: 'center' });
+      }
+    };
+    const handleMobileAboutHash = () => {
+      window.requestAnimationFrame(scrollToMobileAboutStory);
+    };
+
+    window.addEventListener('hashchange', handleMobileAboutHash);
+    window.addEventListener('popstate', handleMobileAboutHash);
+    if (window.location.hash === '#about-story') {
+      window.requestAnimationFrame(scrollToMobileAboutStory);
+    }
+
+    const viewportAnimations = gsap.matchMedia(section);
+    viewportAnimations.add('(min-width: 681px)', () => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isAboutNavigation = (event: MouseEvent) => {
       if (!(event.target instanceof Element)) return false;
 
@@ -230,6 +247,13 @@ export default function AboutCinematic() {
     return () => {
       removeAboutHashChange();
       context.revert();
+    };
+    });
+
+    return () => {
+      window.removeEventListener('hashchange', handleMobileAboutHash);
+      window.removeEventListener('popstate', handleMobileAboutHash);
+      viewportAnimations.revert();
     };
   }, []);
 

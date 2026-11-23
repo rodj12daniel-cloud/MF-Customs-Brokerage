@@ -207,6 +207,13 @@
     padding: 126px 20px 52px;
   }
 
+  .home-hero__content {
+    width: min(100%, 560px);
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+  }
+
   .home-hero__eyebrow {
     margin-bottom: 20px;
     font-size: 10px;
@@ -227,6 +234,11 @@
     margin-top: 20px;
     font-size: 14px;
     line-height: 1.7;
+    text-align: center;
+  }
+
+  .home-hero__actions {
+    justify-content: center;
   }
 
   .home-hero__trust {
@@ -270,108 +282,8 @@
 }
 
 @media (max-width: 600px) {
-  .mobile-logo-scroll-track {
-    display: block;
-    height: 200svh;
-  }
-
+  .mobile-logo-scroll-track,
   .mobile-logo-intro {
-    position: sticky;
-    top: 0;
-    display: grid;
-    height: 100vh;
-    height: 100svh;
-    min-height: 100vh;
-    min-height: 100svh;
-    place-items: center;
-    overflow: hidden;
-    background: transparent;
-    animation: mobile-logo-fade 1.8s cubic-bezier(.22,.61,.36,1) both;
-  }
-
-  .mobile-logo-intro img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    width: min(88vw, 380px);
-    height: auto;
-    filter: brightness(0) invert(1);
-    opacity: var(--logo-scroll-opacity, 1);
-    transform: translate(-50%, calc(-50% - var(--logo-scroll-offset, 0px))) scale(var(--logo-scroll-scale, 1));
-    will-change: opacity, transform;
-  }
-
-  .mobile-logo-scroll-cue {
-    position: absolute;
-    z-index: 1;
-    bottom: calc(28px + env(safe-area-inset-bottom));
-    left: 50%;
-    display: grid;
-    width: 40px;
-    height: 40px;
-    place-items: center;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    color: #f06b6b;
-    opacity: var(--logo-scroll-opacity, 1);
-    filter: drop-shadow(0 0 6px rgba(240, 107, 107, .75)) drop-shadow(0 0 18px rgba(198, 54, 54, .62));
-    animation: mobile-logo-scroll-cue 1.5s ease-in-out infinite;
-    transform: translateX(-50%);
-    transition: opacity .12s linear;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .mobile-logo-scroll-cue svg {
-    width: 24px;
-    height: 24px;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.8;
-  }
-
-  .mobile-logo-scroll-cue:focus-visible {
-    outline: 2px solid #f06b6b;
-    outline-offset: 4px;
-  }
-
-  @keyframes mobile-logo-scroll-cue {
-    0%, 100% {
-      transform: translate(-50%, 0);
-    }
-    50% { transform: translate(-50%, 8px); }
-  }
-
-  @keyframes mobile-logo-fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  html[data-theme="light"] .mobile-logo-intro img {
-    filter: none;
-  }
-
-  .mobile-dock {
-    transition: opacity .3s ease, transform .3s ease;
-  }
-
-  body.home.is-logo-intro-visible .mobile-dock,
-  body.home.is-logo-intro-visible .brand,
-  body.home.is-logo-intro-visible .mfc-chatbot {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(12px);
-  }
-}
-
-@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
-  .mobile-logo-scroll-cue {
-    animation: none;
+    display: none;
   }
 }

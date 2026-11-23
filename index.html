@@ -36,10 +36,7 @@
     html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     body, button, a { font-family: var(--sans); }
-    .mobile-logo-intro { display: none; }
-    @media (max-width: 600px) {
-      .mobile-logo-intro { display: grid; }
-    }
+    .mobile-logo-scroll-track { display: none; }
     a { color: inherit; text-decoration: none; }
     button { color: inherit; }
     ::selection { background: rgba(198, 54, 54, .4); color: #fff; }
@@ -192,7 +189,7 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=91">
+  <link rel="stylesheet" href="site.css?v=92">
   <link rel="stylesheet" href="chatbot.css?v=4">
   <script>try { const key = 'mf-site-preloader-seen'; const isHome = location.pathname === '/' || location.pathname.endsWith('/index.html'); if (isHome && sessionStorage.getItem(key) !== 'true') document.documentElement.classList.add('page-transition-pending'); sessionStorage.setItem(key, 'true'); sessionStorage.removeItem('mf-page-transition'); const navKey = 'mf-internal-transition'; const started = Number(sessionStorage.getItem(navKey)); if (started && Date.now() - started < 2320) { document.documentElement.classList.add('page-transition-internal-pending'); document.documentElement.dataset.internalTransitionStarted = String(started); } sessionStorage.removeItem(navKey); } catch {}</script>
 </head>
@@ -292,8 +289,6 @@
                     <option value="Customs and Tariff Consultancy">Customs and Tariff Consultancy</option>
                     <option value="Trucking Services">Trucking Services</option>
                     <option value="Import License Accreditation">Import License Accreditation</option>
-                    <option value="Lifting of Abandonment">Lifting of Abandonment</option>
-                    <option value="Tentative Release and Customs Protest Filing">Tentative Release and Customs Protest Filing</option>
                   </select>
                 </div>
               </div>
