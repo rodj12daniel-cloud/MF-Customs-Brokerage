@@ -1080,9 +1080,8 @@ html[data-theme="light"] .home-hero {
 }
 
 html[data-theme="light"] .home-hero__eyebrow,
-html[data-theme="light"] .home-hero__title em,
 html[data-theme="light"] .home-hero__copy {
-  color: var(--ink);
+  color: #fff;
 }
 
 html[data-theme="light"] .home-hero__eyebrow {
@@ -1090,7 +1089,8 @@ html[data-theme="light"] .home-hero__eyebrow {
 }
 
 html[data-theme="light"] .home-hero__title em {
-  background-image: linear-gradient(100deg, #b92730 0%, #9e1f24 100%);
+  background: none;
+  color: #fff;
 }
 
 html[data-theme="light"] .home-hero__copy {

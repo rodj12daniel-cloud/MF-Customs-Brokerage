@@ -125,16 +125,12 @@
 }
 
 .home-hero__title em {
-  background: linear-gradient(100deg, #ffc06a 0%, #ff9636 55%, #ffd095 100%);
-  background-clip: text;
-  color: transparent;
+  color: #fff;
   font-family: inherit;
   font-size: 1.12em;
   font-weight: 400;
   font-style: normal;
   line-height: .98;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .home-hero__copy {
